@@ -10,7 +10,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print('test for github pushhhhh');
+
     return MaterialApp(
       title: 'KAU Sports Village',
       theme: ThemeData(
