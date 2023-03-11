@@ -10,14 +10,14 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
+//test for git hub
     return MaterialApp(
       title: 'KAU Sports Village',
       theme: ThemeData(
         primarySwatch: Colors.green,
         accentColor: Colors.deepOrange[800],
       ),
-     //home: TabsScreen(),
+      //home: TabsScreen(),
       //initialRoute: '/',
       routes: {
         '/': (ctx) => TabsScreen(),
