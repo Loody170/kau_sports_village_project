@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kau_sports_village_project/screens/gym_assistant_screen.dart';
+import 'package:kau_sports_village_project/screens/reservation_form_screen.dart';
 import 'package:kau_sports_village_project/screens/sport_venues_screen.dart';
 import 'package:kau_sports_village_project/screens/sport_categories_screen.dart';
 import 'package:kau_sports_village_project/screens/tabs_screen.dart';
@@ -10,7 +11,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-//test for git hub
+
     return MaterialApp(
       title: 'KAU Sports Village',
       theme: ThemeData(
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         SportVenuesScreen.routeName: (ctx) => SportVenuesScreen(),
         GymAssistantScreen.routeName: (ctx) => GymAssistantScreen(),
         VenueBookingScreen.routeName: (ctx) => VenueBookingScreen(),
+        ReservationFormScreen.routeName: (ctx) => ReservationFormScreen(),
       },
     );
   }

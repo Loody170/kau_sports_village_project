@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kau_sports_village_project/models/sport_venue.dart';
+import 'package:kau_sports_village_project/screens/reservation_form_screen.dart';
 import 'package:kau_sports_village_project/widgets/period_buttons.dart';
 import 'package:kau_sports_village_project/widgets/venue_item.dart';
 
@@ -52,7 +53,14 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
         Text(_dateTime.toString()),
         //VenueBookingScreen.buttons,
        PeroidButtons(selectedDate: _dateTime, chosenVenue: routeArgs['venueObject'] as VenueItem,),
-        Container(padding: EdgeInsets.all(50), child: ElevatedButton(onPressed: (){print(PeroidButtons.chosenPeroid);}, child: Text('Book')))
+        Container(padding: EdgeInsets.all(50),
+            child: ElevatedButton(onPressed: (){
+              print(PeroidButtons.chosenPeroid);
+              Navigator.of(context).pushNamed(ReservationFormScreen.routeName, arguments: [
+                routeArgs['venueObject'], _dateTime, PeroidButtons.chosenPeroid
+              ] );
+
+          }, child: Text('Book')))
 
       ],
     ),));

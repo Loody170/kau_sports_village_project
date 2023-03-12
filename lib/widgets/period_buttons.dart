@@ -8,6 +8,9 @@ class PeroidButtons extends StatefulWidget {
   DateTime selectedDate;
   VenueItem chosenVenue;
   static late String chosenPeroid;
+  bool button1 = false;
+  bool button2 = false;
+  bool button3 = false;
 
 
   PeroidButtons({required this.selectedDate, required this.chosenVenue});
@@ -54,9 +57,38 @@ class _PeroidButtonsState extends State<PeroidButtons> {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      ElevatedButton(onPressed:checkIfReserved(widget.selectedDate, widget.chosenVenue, '4-6')? null: (){PeroidButtons.chosenPeroid = '4-6';}, child: Text('4-6')),
-      ElevatedButton(onPressed:checkIfReserved(widget.selectedDate, widget.chosenVenue, '6-8')? null: (){PeroidButtons.chosenPeroid = '6-8';}, child: Text('6-8')),
-      ElevatedButton(onPressed: checkIfReserved(widget.selectedDate, widget.chosenVenue, '8-10')? null: (){PeroidButtons.chosenPeroid = '8-10';}, child: Text('8-10'))
+      ElevatedButton(style: widget.button1? ElevatedButton.styleFrom(backgroundColor: Colors.purple): ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+          onPressed:checkIfReserved(widget.selectedDate, widget.chosenVenue, '4-6')? null: (){
+        PeroidButtons.chosenPeroid = '4-6';
+        setState(() {
+          widget.button1 = true;
+          widget.button2 = false;
+          widget.button3 = false;
+        });
+        }, child: Text('4-6')),
+
+
+      ElevatedButton(style: widget.button2? ElevatedButton.styleFrom(backgroundColor: Colors.purple): ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+    onPressed:checkIfReserved(widget.selectedDate, widget.chosenVenue, '6-8')? null: (){
+        PeroidButtons.chosenPeroid = '6-8';
+        setState(() {
+          widget.button1 = false;
+          widget.button2 = true;
+          widget.button3 = false;
+        });
+        },
+          child: Text('6-8')),
+
+      ElevatedButton(style: widget.button3? ElevatedButton.styleFrom(backgroundColor: Colors.purple): ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+          onPressed: checkIfReserved(widget.selectedDate, widget.chosenVenue, '8-10')? null: (){
+        PeroidButtons.chosenPeroid = '8-10';
+        setState(() {
+          widget.button1 = false;
+          widget.button2 = false;
+          widget.button3 = true;
+        });
+        },
+          child: Text('8-10'))
     ],);
   }
 }
