@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kau_sports_village_project/widgets/reservation_form.dart';
 
 class ReservationFormScreen extends StatefulWidget {
-  static final String routeName = 'reservation-form';
+  static final String routeName = '/reservation-form';
 
 
   @override
@@ -16,7 +16,7 @@ class _ReservationFormScreenState extends State<ReservationFormScreen> {
     print(routeArgs[2]);
 
     return Scaffold(appBar: AppBar(title: Text('booking form'),),
-      body: ReservationForm(routeArgs[0]?.capacity));
+      body: ReservationForm(routeArgs));
   }
 }
 

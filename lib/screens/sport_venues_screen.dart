@@ -17,7 +17,7 @@ class SportVenuesScreen extends StatelessWidget {
     final String type = routeArgs['type'] as String;
     final String title = routeArgs['title'] as String;
 
-    List<SportVenue> displayedVenues = DUMMY_SPORTVENUES.where((venue){
+    List<VenueItem> displayedVenues = DUMMY_SPORTVENUES.where((venue){
       return venue.typeOfSport.contains(type);
     }).toList();
 

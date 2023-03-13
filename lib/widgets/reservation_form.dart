@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:kau_sports_village_project/widgets/venue_item.dart';
+
+import '../screens/reservation_confirmation_screen.dart';
 
 class ReservationForm extends StatefulWidget {
-  late int venueCapacity;
+  late List receivedArgs;
+  late int venueCapacity = (receivedArgs[0] as VenueItem).capacity;
   String label = '';
   late Map formData;
   List listOfPlayers = [];
+
+  ReservationForm(this.receivedArgs,);
 
   Map initMap(){
     Map map = {};
@@ -33,6 +39,11 @@ class ReservationForm extends StatefulWidget {
           child: TextFormField(decoration: InputDecoration(labelText:label,),
             textInputAction: TextInputAction.next,
             validator: (value){
+            if((value as String)=='') {
+              print('no name provided');
+              print(value);
+              return 'Player name can\'t be empty';
+            }
               RegExp fullNameRegex = RegExp(r'^[a-zA-Z]+(\s[a-zA-Z]+)+$');
               if(!fullNameRegex.hasMatch(value as String))
                 return 'Entered name is invalid';
@@ -48,6 +59,18 @@ class ReservationForm extends StatefulWidget {
         Expanded(child: TextFormField(decoration: InputDecoration(labelText: 'University ID',),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.number,
+          validator: (value){
+            if((value as String)=='') {
+              print('no number provided');
+              print(value);
+              return 'University ID can\'t be empty';
+            }
+            RegExp numberRegex = RegExp(r'^[1-2]\d{6}$');
+            if(!numberRegex.hasMatch(value as String)){
+              return 'Entered University ID is invalid';
+            }
+          },
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           onSaved: (value){
             listOfPlayers.add(value);
           },),
@@ -58,7 +81,6 @@ class ReservationForm extends StatefulWidget {
     return fields;
   }
 
-  ReservationForm(this.venueCapacity);
 
   @override
   State<ReservationForm> createState() => _ReservationFormState();
@@ -69,7 +91,13 @@ class _ReservationFormState extends State<ReservationForm> {
 
   void saveForm(){
     _form.currentState?.save();
-
+  }
+  bool validateForm(){
+    bool? v =_form.currentState?.validate();
+    if(!v!)
+      return false;
+    else
+      return true;
   }
 
   @override
@@ -84,11 +112,19 @@ class _ReservationFormState extends State<ReservationForm> {
             this.widget.makeFields()
           ),
           ElevatedButton(onPressed: (){
+
             this.saveForm();
-            //print(this.widget.l);
             this.widget.updateMap(this.widget.listOfPlayers, this.widget.formData, );
             print('map is :');
             print(this.widget.formData);
+            if(!this.validateForm())
+              return;
+            else
+              print('yaaaaay');
+            Navigator.of(context).pushNamed(ReservationConfirmationScreen.routeName, arguments: [
+              this.widget.receivedArgs,
+              this.widget.formData
+            ]);
           }, child: Text('Confirm'))
         ],
       ),

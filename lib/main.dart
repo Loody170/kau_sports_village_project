@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kau_sports_village_project/screens/gym_assistant_screen.dart';
+import 'package:kau_sports_village_project/screens/reservation_confirmation_screen.dart';
 import 'package:kau_sports_village_project/screens/reservation_form_screen.dart';
 import 'package:kau_sports_village_project/screens/sport_venues_screen.dart';
 import 'package:kau_sports_village_project/screens/sport_categories_screen.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         GymAssistantScreen.routeName: (ctx) => GymAssistantScreen(),
         VenueBookingScreen.routeName: (ctx) => VenueBookingScreen(),
         ReservationFormScreen.routeName: (ctx) => ReservationFormScreen(),
+        ReservationConfirmationScreen.routeName: (ctx) => ReservationConfirmationScreen(),
       },
     );
   }

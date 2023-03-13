@@ -7,7 +7,7 @@ import 'package:kau_sports_village_project/widgets/venue_item.dart';
 import '../dummy_data.dart';
 
 class VenueBookingScreen extends StatefulWidget {
-  static final String routeName = 'venue-booking';
+  static final String routeName = '/venue-booking';
   static late Widget buttons = Row();
 
   @override

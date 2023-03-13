@@ -25,7 +25,7 @@ class _PeroidButtonsState extends State<PeroidButtons> {
   }
 
   bool checkIfReserved(DateTime selectedDate, VenueItem chosenVenue, String peroid,) {
-    var list = getReservations();
+    var list = l;
     String d = '';
     for(var i=0;i<list.length;i++){
       if(list[i].reservationDate.year == selectedDate.year
