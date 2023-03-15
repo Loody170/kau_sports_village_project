@@ -78,4 +78,5 @@ const DUMMY_CATEGORIES = const [
   updateList(Reservation r){
     l = getReservations();
     l.add(r);
+    l = l;
   }

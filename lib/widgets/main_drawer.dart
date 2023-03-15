@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kau_sports_village_project/screens/user_reservations_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   Widget buildListTiles(String title, IconData icon, VoidCallback tapHandler){
@@ -13,6 +14,8 @@ class MainDrawer extends StatelessWidget {
         ,),
       SizedBox(height: 20,),
       buildListTiles('Sports Categories', Icons.sports_handball, (){Navigator.of(context).pushReplacementNamed('/');}),
+      buildListTiles('My Reservations', Icons.menu_book_outlined, (){Navigator.of(context).pushReplacementNamed(UserReservationsScreen.routeName);}),
+
 
     ],),
     );

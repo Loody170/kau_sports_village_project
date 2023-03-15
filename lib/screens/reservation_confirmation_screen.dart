@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:kau_sports_village_project/dummy_data.dart';
 import 'package:kau_sports_village_project/models/reservation.dart';
+import 'package:kau_sports_village_project/screens/reservation_successful_screen.dart';
 import 'package:kau_sports_village_project/widgets/venue_item.dart';
 
 class ReservationConfirmationScreen extends StatelessWidget {
@@ -42,7 +43,7 @@ class ReservationConfirmationScreen extends StatelessWidget {
         ElevatedButton(onPressed: (){
           createReservation(dt,chosenPeriod,venue, m);
           //TODO MAKE BOOKING SUCCESS PAGE ISNTEAD OF DIRECTLY GOING HOME
-          Navigator.of(context).pushNamed('/');
+          Navigator.of(context).pushNamed(ReservationSuccessfulScreen.routeName);
         }, child: Text('submit reservation request'),)
 
       ],)
