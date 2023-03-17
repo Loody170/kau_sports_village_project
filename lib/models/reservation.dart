@@ -18,4 +18,6 @@ class Reservation{
   required this.reservationTime,
   required this.reservedVenue,
   required this.listOfAttendants});
+
+
 }

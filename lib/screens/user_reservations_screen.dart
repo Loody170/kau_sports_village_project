@@ -14,6 +14,12 @@ class UserReservationsScreen extends StatefulWidget {
 }
 
 class _UserReservationsScreenState extends State<UserReservationsScreen> {
+
+  void updateScreen(){
+    setState(() {
+    });
+  }
+
   List<Reservation> rList = l as List<Reservation>;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,9 @@ class _UserReservationsScreenState extends State<UserReservationsScreen> {
                   venueImage: reservation.reservedVenue.imageUrl,
                   reservedDate: reservation.reservationDate,
                   peroid: reservation.reservationTime,
-                  reservationStatus: reservation.reservationStatus)).toList(),
+                  reservationStatus: reservation.reservationStatus,
+              reservationNumber: reservation.reservationNumber,
+              setState: updateScreen,)).toList(),
 
       )
       ,);
