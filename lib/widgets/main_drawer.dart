@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kau_sports_village_project/screens/sign_in_screen.dart';
 import 'package:kau_sports_village_project/screens/user_reservations_screen.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -15,7 +17,10 @@ class MainDrawer extends StatelessWidget {
       SizedBox(height: 20,),
       buildListTiles('Sports Categories', Icons.sports_handball, (){Navigator.of(context).pushReplacementNamed('/');}),
       buildListTiles('My Reservations', Icons.menu_book_outlined, (){Navigator.of(context).pushReplacementNamed(UserReservationsScreen.routeName);}),
-
+      buildListTiles('Sign in', Icons.supervised_user_circle_rounded, (){
+        //FirebaseAuth.instance.signOut();
+        Navigator.of(context).pushReplacementNamed(SignInScreen.routeName);
+      }),
 
     ],),
     );

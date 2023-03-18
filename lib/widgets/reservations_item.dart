@@ -91,9 +91,6 @@ class ReservationItem extends StatelessWidget {
                         return confirmDialog(context);
                           });
 
-                      //deleteReservation(reservationNumber);
-                      //setState();
-                      //TODO: METHOD TO CANCEL RESERVATION
                     }, child: Text('Delete reservation'))
 
                   ],)

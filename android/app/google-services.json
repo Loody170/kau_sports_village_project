@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "152673448699",
+    "project_id": "kau-sports-village",
+    "storage_bucket": "kau-sports-village.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152673448699:android:9f3b9172ece552179bb65e",
+        "android_client_info": {
+          "package_name": "com.example.kau_sports_village_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152673448699-r27hnao256s1q2o833g4cf6ub3ldugpm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmAKhOrqYDZlcKIDrkUs6aUQaNHSbv9z8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152673448699-r27hnao256s1q2o833g4cf6ub3ldugpm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
