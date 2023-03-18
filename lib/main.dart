@@ -14,7 +14,6 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: 'KAU Sports Village',
       theme: ThemeData(
@@ -29,10 +28,11 @@ class MyApp extends StatelessWidget {
         GymAssistantScreen.routeName: (ctx) => GymAssistantScreen(),
         VenueBookingScreen.routeName: (ctx) => VenueBookingScreen(),
         ReservationFormScreen.routeName: (ctx) => ReservationFormScreen(),
-        ReservationConfirmationScreen.routeName: (ctx) => ReservationConfirmationScreen(),
-        ReservationSuccessfulScreen.routeName: (ctx) => ReservationSuccessfulScreen(),
+        ReservationConfirmationScreen.routeName: (ctx) =>
+            ReservationConfirmationScreen(),
+        ReservationSuccessfulScreen.routeName: (ctx) =>
+            ReservationSuccessfulScreen(),
         UserReservationsScreen.routeName: (ctx) => UserReservationsScreen(),
-
       },
     );
   }
