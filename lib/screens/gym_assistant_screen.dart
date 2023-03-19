@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+//import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'dart:io';
-import 'package:image_picker/image_picker.dart';
-import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
+//import 'package:image_picker/image_picker.dart';
+//import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
 class GymAssistantScreen extends StatefulWidget {
   static const routeName = '/gym-assistant';
@@ -28,7 +28,7 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
         children: [
           ElevatedButton(
             onPressed: () {
-              scanQRCode();
+              //scanQRCode();
             },
             child: Text('Scan QR'),
           ),
@@ -41,20 +41,20 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
     );
   }
 
-  void scanQRCode() async {
-    try {
-      final qrCode = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.QR);
-
-      if (!mounted) return;
-
-      setState(() {
-        getResult = qrCode;
-      });
-      print("QRCode_Result:--");
-      print(qrCode);
-    } on PlatformException {
-      getResult = 'Failed to scan QR Code.';
-    }
-  }
+  // void scanQRCode() async {
+  //   try {
+  //     final qrCode = await FlutterBarcodeScanner.scanBarcode(
+  //         '#ff6666', 'Cancel', true, ScanMode.QR);
+  //
+  //     if (!mounted) return;
+  //
+  //     setState(() {
+  //       getResult = qrCode;
+  //     });
+  //     print("QRCode_Result:--");
+  //     print(qrCode);
+  //   } on PlatformException {
+  //     getResult = 'Failed to scan QR Code.';
+  //   }
+  // }
 }

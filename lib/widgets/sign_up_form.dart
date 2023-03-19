@@ -1,11 +1,13 @@
-import 'dart:ffi';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class SignUpForm extends StatelessWidget {
 
-  Widget buildFormField(String hintText, bool obscureVar, Function validator, String target){
-    return TextFormField(decoration: InputDecoration(
+  InputDecoration getInputDecoration(String hintText){
+    return InputDecoration(
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: Colors.white),
         borderRadius: BorderRadius.circular(12),
@@ -17,30 +19,27 @@ class SignUpForm extends StatelessWidget {
       hintText: hintText,
       fillColor: Colors.grey[200],
       filled: true,
-    ),
-      obscureText: obscureVar,
-      validator: (value){validator();},
-      onSaved: (value){
-      print('entered');
-      target = value as String;},
     );
   }
 
   List<String> catagories = ['Student', 'Faculty Member', 'Employee'];
   late String chosenValue;
 
-  late String firstName ='';
-  late String lastName ='';
-  late String role='';
-  late String department='';
-  late String universityId='';
-  late String phoneNumber='';
-  late String email='';
+  late String firstName;
+  late String lastName;
+  late String role;
+  late String department;
+  late String universityId;
+  late String phoneNumber;
+  late String email;
+  late String _password;
+  late String _password2;
 
   final _form = GlobalKey<FormState>();
 
   void saveForm(){
     _form.currentState?.save();
+    print('fname $firstName lname $lastName roel $role department $department kau id $universityId phone number $phoneNumber email $email');
   }
   bool validateForm(){
     bool? v =_form.currentState?.validate();
@@ -50,20 +49,50 @@ class SignUpForm extends StatelessWidget {
       return true;
   }
 
+  Future signUp() async{
+    var authResult = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+    password: _password);
+    FirebaseFirestore.instance.collection('users').doc(authResult.user?.uid).set({
+      'First Name': firstName,
+      'Last Name': lastName,
+      'Role': role,
+      'Department': department,
+      'KAU ID': universityId,
+      'Phone Number': phoneNumber,
+      'Email': email
+    });
+
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return Form(child: SingleChildScrollView(
+    return Form(
+      key: _form,
+        child: SingleChildScrollView(
       child: Column(children: [
 
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 25,),
           child: Row(children: [
             Expanded(
-                child: buildFormField('First Name', false, (value){}, firstName),
+                child: TextFormField(
+                  decoration: getInputDecoration('First Name'),
+                  onSaved: (value) {
+                    firstName = value as String;
+                    },
+                ),
             ),
             SizedBox(width: 10,),
             Expanded(
-                child: buildFormField('Last Name', false, (value){}, lastName),
+                child: TextFormField(
+                  decoration: getInputDecoration('Last Name'),
+                  onSaved: (value) {
+                    lastName = value as String;
+                  },
+                ),
             ),
           ],),
         ),
@@ -94,11 +123,15 @@ class SignUpForm extends StatelessWidget {
                     chosenValue = value as String;
                     print('vlauee izzz' + chosenValue);
                   } ,
+                  onSaved: (value){role = value as String;},
                 )
             ),
             SizedBox(width: 10,),
             Expanded(
-              child: buildFormField('Faculty\\Department', false, (value){}, department),
+              child: TextFormField(
+                decoration: getInputDecoration('Faculty\\Department'),
+                onSaved: (value) => department = value as String,
+              ),
             ),
           ],),
         ),
@@ -106,36 +139,55 @@ class SignUpForm extends StatelessWidget {
 
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 25,),
-          child: buildFormField('KAU ID', false, (value){}, universityId)
+          child: TextFormField(
+           decoration: getInputDecoration('KAU ID'),
+            onSaved: (value) => universityId = value as String,
+          ),
         ),
         SizedBox(height: 10,),
+
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 25,),
-          child: buildFormField('Phone Number', false, (value){}, phoneNumber)
-        ),
-        SizedBox(height: 10,),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25,),
-          child: buildFormField('Email', false, (value){}, email)
-        ),
-        SizedBox(height: 10,),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25,),
-          child: buildFormField('Password', true, (value){}, '')
+          child: TextFormField(
+            decoration: getInputDecoration('Phone Number'),
+            onSaved: (value) => phoneNumber = value as String,
+          ),
         ),
 
         SizedBox(height: 10,),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 25,),
-          child: buildFormField('Confirm password', true, (value){}, ''),
+          child: TextFormField(
+            decoration: getInputDecoration('Email'),
+            onSaved: (value) => email = value as String,
+          ),
+        ),
+        SizedBox(height: 10,),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25,),
+          child: TextFormField(
+            decoration: getInputDecoration('Password'),
+            onSaved: (value) => _password = value as String,
+            obscureText: true,
+          ),
+        ),
+
+        SizedBox(height: 10,),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25,),
+          child: TextFormField(
+            decoration: getInputDecoration('Confirm Password'),
+            obscureText: true,
+            onSaved: (value) => _password2 = value as String,
+          ),
         ),
         SizedBox(height: 10,),
 
         Padding(padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: GestureDetector(
               onTap: (){
-                _form.currentState?.save();
-                print(firstName + lastName + phoneNumber + universityId + department + email);
+                saveForm();
+                signUp();
               },
               child: Container(
                 padding: EdgeInsets.all(20),
@@ -149,9 +201,6 @@ class SignUpForm extends StatelessWidget {
               ),
             )
         ),
-
-
-
       ],),
     ));
   }

@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kau_sports_village_project/widgets/custom_text_field.dart';
 import 'package:kau_sports_village_project/widgets/sign_up_form.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -56,22 +55,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(height: 25,),
 
                 SignUpForm(),
-
-                // Padding(padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                //     child: GestureDetector(
-                //       onTap: signUp,
-                //       child: Container(
-                //         padding: EdgeInsets.all(20),
-                //         decoration: BoxDecoration(
-                //           color: Colors.deepPurple,
-                //           borderRadius: BorderRadius.circular(12),
-                //         ),
-                //         child: Center(
-                //           child: Text('Sign up', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),),
-                //         ),
-                //       ),
-                //     )
-                // ),
 
                 SizedBox(height: 15,),
 
