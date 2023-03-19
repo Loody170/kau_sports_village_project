@@ -32,8 +32,8 @@ class SignUpForm extends StatelessWidget {
   late String universityId;
   late String phoneNumber;
   late String email;
-  late String _password;
-  late String _password2;
+  final _passwordController = TextEditingController();
+  final _secondPasswordController = TextEditingController();
 
   final _form = GlobalKey<FormState>();
 
@@ -42,17 +42,17 @@ class SignUpForm extends StatelessWidget {
     print('fname $firstName lname $lastName roel $role department $department kau id $universityId phone number $phoneNumber email $email');
   }
   bool validateForm(){
-    bool? v =_form.currentState?.validate();
-    if(!v!)
-      return false;
-    else
+    bool? isValid =_form.currentState?.validate();
+    if(isValid!)
       return true;
+    else
+      return false;
   }
 
   Future signUp() async{
     var authResult = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
-    password: _password);
+    password: _passwordController.text.trim());
     FirebaseFirestore.instance.collection('users').doc(authResult.user?.uid).set({
       'First Name': firstName,
       'Last Name': lastName,
@@ -83,6 +83,13 @@ class SignUpForm extends StatelessWidget {
                   onSaved: (value) {
                     firstName = value as String;
                     },
+                  validator: (value){
+                    RegExp nameRegex = RegExp(r'^[a-zA-Z]+$');
+                    if(!nameRegex.hasMatch(value as String)){
+                      return 'Name is Invalid';
+                    }
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
             ),
             SizedBox(width: 10,),
@@ -92,6 +99,13 @@ class SignUpForm extends StatelessWidget {
                   onSaved: (value) {
                     lastName = value as String;
                   },
+                  validator: (value){
+                    RegExp nameRegex = RegExp(r'^[a-zA-Z]+$');
+                    if(!nameRegex.hasMatch(value as String)){
+                      return 'Name is Invalid';
+                    }
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
             ),
           ],),
@@ -123,6 +137,12 @@ class SignUpForm extends StatelessWidget {
                     chosenValue = value as String;
                     print('vlauee izzz' + chosenValue);
                   } ,
+                  validator: (value){
+                    if(value == null){
+                      return 'Please choose an answer';
+                    }
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   onSaved: (value){role = value as String;},
                 )
             ),
@@ -131,6 +151,13 @@ class SignUpForm extends StatelessWidget {
               child: TextFormField(
                 decoration: getInputDecoration('Faculty\\Department'),
                 onSaved: (value) => department = value as String,
+                validator: (value){
+                  RegExp nameRegex = RegExp(r'^[a-zA-Z]+$');
+                  if(!nameRegex.hasMatch(value as String)){
+                    return 'Department is Invalid';
+                  }
+                },
+                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
             ),
           ],),
@@ -142,6 +169,18 @@ class SignUpForm extends StatelessWidget {
           child: TextFormField(
            decoration: getInputDecoration('KAU ID'),
             onSaved: (value) => universityId = value as String,
+            validator: (value){
+              if((value as String)=='') {
+                print('No KAU ID provided');
+                print(value);
+                return 'University ID can\'t be empty';
+              }
+              RegExp numberRegex = RegExp(r'^[1-2]\d{6}$');
+              if(!numberRegex.hasMatch(value as String)){
+                return 'Entered University ID is invalid';
+              }
+            },
+            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),
         SizedBox(height: 10,),
@@ -151,6 +190,18 @@ class SignUpForm extends StatelessWidget {
           child: TextFormField(
             decoration: getInputDecoration('Phone Number'),
             onSaved: (value) => phoneNumber = value as String,
+            validator: (value){
+              if((value as String)=='') {
+                print('No phone number provided');
+                print(value);
+                return 'Phone number can\'t be empty';
+              }
+              RegExp phoneRegex = RegExp(r'^0(5)[^123][0-9]{7}$');
+              if(!phoneRegex.hasMatch(value as String)){
+                return 'Phone number is invalid';
+              }
+            },
+            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),
 
@@ -160,6 +211,13 @@ class SignUpForm extends StatelessWidget {
           child: TextFormField(
             decoration: getInputDecoration('Email'),
             onSaved: (value) => email = value as String,
+            validator: (value){
+              RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$');
+              if(!emailRegex.hasMatch(value as String)){
+                return 'Entered Email is Invalid';
+              }
+            },
+            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),
         SizedBox(height: 10,),
@@ -167,8 +225,15 @@ class SignUpForm extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 25,),
           child: TextFormField(
             decoration: getInputDecoration('Password'),
-            onSaved: (value) => _password = value as String,
+            //onSaved: (value) => _passwordController = value,
             obscureText: true,
+            controller: _passwordController,
+            validator: (value){
+              if((value as String).isEmpty){
+                return 'Password Can\'t be empty';
+              }
+            },
+            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),
 
@@ -178,7 +243,14 @@ class SignUpForm extends StatelessWidget {
           child: TextFormField(
             decoration: getInputDecoration('Confirm Password'),
             obscureText: true,
-            onSaved: (value) => _password2 = value as String,
+            //onSaved: (value) => _password2 = value as String,
+            controller: _secondPasswordController,
+            validator: (value){
+              if(_passwordController.text != _secondPasswordController.text){
+                return 'Passwords don\'t match';
+              }
+            },
+            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),
         SizedBox(height: 10,),
@@ -186,8 +258,12 @@ class SignUpForm extends StatelessWidget {
         Padding(padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: GestureDetector(
               onTap: (){
-                saveForm();
-                signUp();
+                if(validateForm()) {
+                  saveForm();
+                  signUp();
+                }
+                else
+                  return;
               },
               child: Container(
                 padding: EdgeInsets.all(20),

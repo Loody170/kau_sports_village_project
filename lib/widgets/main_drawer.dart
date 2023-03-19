@@ -12,13 +12,13 @@ class MainDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(child: Column(children: [
       Container(color: Theme.of(context).accentColor, height: 120, width: double.infinity, padding: EdgeInsets.all(20), alignment: Alignment.centerLeft,
-        child: Text('Side Bar!', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 30, color: Theme.of(context).primaryColor),)
+        child: Text('Side Bar!' , style: TextStyle(fontWeight: FontWeight.w900, fontSize: 30, color: Theme.of(context).primaryColor),)
         ,),
       SizedBox(height: 20,),
       buildListTiles('Sports Categories', Icons.sports_handball, (){Navigator.of(context).pushReplacementNamed('/');}),
       buildListTiles('My Reservations', Icons.menu_book_outlined, (){Navigator.of(context).pushReplacementNamed(UserReservationsScreen.routeName);}),
-      buildListTiles('Sign in', Icons.supervised_user_circle_rounded, (){
-        //FirebaseAuth.instance.signOut();
+      buildListTiles('Sign out', Icons.supervised_user_circle_rounded, (){
+        FirebaseAuth.instance.signOut();
         Navigator.of(context).pushReplacementNamed(SignInScreen.routeName);
       }),
 

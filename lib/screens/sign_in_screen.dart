@@ -89,8 +89,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       hintText: 'Password',
                       fillColor: Colors.grey[200],
                       filled: true,
-
                     ),
+                    obscureText: true,
                   ),
                 ),
 
