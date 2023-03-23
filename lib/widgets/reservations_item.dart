@@ -9,21 +9,22 @@ import '../models/reservation.dart';
 class ReservationItem extends StatelessWidget {
   late String venueName;
   late String venueImage;
-  late DateTime reservedDate;
+  late String reservedDate;
   late String peroid;
   late String reservationStatus;
   late int reservationNumber;
   late Function setState;
 
-  ReservationItem({required this.venueName, required this.venueImage, required this.reservedDate,
+  ReservationItem(
+      {required this.venueName, required this.venueImage, required this.reservedDate,
     required this.peroid, required this.reservationStatus,
   required this.reservationNumber, required this.setState});
 
   var format = DateFormat('yyyy-MM-dd');
-
-  String formatDate(){
-    return format.format(reservedDate);
-  }
+  //
+  // String formatDate(){
+  //   return format.format(reservedDate);
+  // }
 
   void deleteReservation(int reservationNumber){
     List<Reservation> listOfReservations = l as List<Reservation>;
@@ -75,7 +76,7 @@ class ReservationItem extends StatelessWidget {
               subtitle: Column(
                 children: [
                   Row(children: [
-                    Icon(Icons.calendar_month), Text(formatDate()),
+                    Icon(Icons.calendar_month), Text(reservedDate),
                     Padding(padding: EdgeInsets.all(10)),
                     Icon(Icons.timer_outlined), Text(peroid),
                   ],),

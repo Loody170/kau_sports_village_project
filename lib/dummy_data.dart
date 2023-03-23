@@ -4,7 +4,8 @@ import 'package:kau_sports_village_project/models/sport_venue.dart';
 import 'package:kau_sports_village_project/widgets/venue_item.dart';
 import 'models/category.dart';
 
- List l =getReservations();
+ List l =[];
+ //getReservations();
 
 const DUMMY_CATEGORIES = const [
   SportsCategory(type: 'FB', title: 'Football', color: Colors.green),
@@ -49,34 +50,34 @@ const DUMMY_CATEGORIES = const [
     return allVenues.where((venue) => venue.typeOfSport == 'FB' && venue.title == 'Outdoor Football Field').toList();
   }
 
-   List<Reservation> getReservations(){
-    return [
-      Reservation(reservationNumber: 223,
-          reservationDate: DateTime.parse('2023-03-20'),
-          reservationStatus: 'pending',
-          reservationTime: '6-8',
-          reservedVenue: getReservedVenue(DUMMY_SPORTVENUES)[0],
-          listOfAttendants: {'name': 'ahmed ahemd', 'id':'121'}),
-      //
-      // Reservation(reservationNumber: 1,
-      //     reservationDate: DateTime.parse('2023-07-02'),
-      //     reservationStatus: 'pending',
-      //     reservationTime: '4-6',
-      //     reservedVenue: getReservedVenue(DUMMY_SPORTVENUES)[0],
-      //     listOfAttendants: {'name': 'ahmed ahemd', 'id':'121'}),
-      //
-      // Reservation(reservationNumber: 1,
-      //     reservationDate: DateTime.parse('2023-04-13'),
-      //     reservationStatus: 'pending',
-      //     reservationTime: '8-10',
-      //     reservedVenue: getReservedVenue(DUMMY_SPORTVENUES)[0],
-      //     listOfAttendants: {'name': 'ahmed ahemd', 'id':'121'}),
+  //  List<Reservation> getReservations(){
+  //   return [
+  //     Reservation(reservationNumber: 223,
+  //         reservationDate: DateTime.parse('2023-03-20'),
+  //         reservationStatus: 'pending',
+  //         reservationTime: '6-8',
+  //         reservedVenue: getReservedVenue(DUMMY_SPORTVENUES)[0],
+  //         listOfAttendants: {'name': 'ahmed ahemd', 'id':'121'}),
+  //     //
+  //     // Reservation(reservationNumber: 1,
+  //     //     reservationDate: DateTime.parse('2023-07-02'),
+  //     //     reservationStatus: 'pending',
+  //     //     reservationTime: '4-6',
+  //     //     reservedVenue: getReservedVenue(DUMMY_SPORTVENUES)[0],
+  //     //     listOfAttendants: {'name': 'ahmed ahemd', 'id':'121'}),
+  //     //
+  //     // Reservation(reservationNumber: 1,
+  //     //     reservationDate: DateTime.parse('2023-04-13'),
+  //     //     reservationStatus: 'pending',
+  //     //     reservationTime: '8-10',
+  //     //     reservedVenue: getReservedVenue(DUMMY_SPORTVENUES)[0],
+  //     //     listOfAttendants: {'name': 'ahmed ahemd', 'id':'121'}),
+  //
+  //   ];
+  // }
 
-    ];
-  }
-
-  updateList(Reservation r){
-    l = getReservations();
-    l.add(r);
-    l = l;
-  }
+  // updateList(Reservation r){
+  //   l = getReservations();
+  //   l.add(r);
+  //   l = l;
+  // }

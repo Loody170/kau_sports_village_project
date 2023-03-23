@@ -17,4 +17,14 @@ class SportVenue{
     required this.imageUrl
       });
 
+  static SportVenue fromJson(Map<String, dynamic> map){
+    return SportVenue(typeOfSport: map['typeOfSport'],
+        title: map['title'],
+        number: map['number'],
+        capacity: map['venueCapacity'],
+        availablePeroids: map['availablePeriods'],
+        state: map['venueState'],
+        imageUrl: map['imageUrl']
+    );
+  }
 }

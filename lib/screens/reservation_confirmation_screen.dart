@@ -1,26 +1,50 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:kau_sports_village_project/dummy_data.dart';
 import 'package:kau_sports_village_project/models/reservation.dart';
 import 'package:kau_sports_village_project/screens/reservation_successful_screen.dart';
 import 'package:kau_sports_village_project/widgets/venue_item.dart';
 
+import '../widgets/period_buttons.dart';
+
 class ReservationConfirmationScreen extends StatelessWidget {
   static String routeName = '/confirmation-screen';
   late List receivedArgs;
+  
+  String formatDate(DateTime dt){
+    var format = DateFormat('yyyy-MM-dd');
+    return format.format(dt);
+  }
 
-  void createReservation(
-      DateTime date, String peroid, VenueItem venue, Map list) {
+  Future createReservation(
+      DateTime date, String peroid, VenueItem venue, Map list) async{
+
     Reservation reservation = Reservation(
         reservationNumber: 100 + Random().nextInt(900),
-        reservationDate: date,
+        formattedDate: formatDate(date),
         reservationStatus: 'pending',
         reservationTime: peroid,
-        reservedVenue: venue,
-        listOfAttendants: list);
+        reservedVenueName: venue.title,
+        reservedVenueNumber: venue.number,
+        reservedVenueType: venue.typeOfSport,
+        listOfAttendants: list as Map<dynamic, dynamic>);
 
-    updateList(reservation);
+    print('object is done');
+    print(reservation);
+    final docUser =
+    FirebaseFirestore.instance.collection('reservations').doc();
+    await docUser.set(Reservation.toJson(
+        reservation,
+        FirebaseAuth.instance.currentUser!.uid,
+        venue.typeOfSport
+    ));
+    print('sent the json done');
+
+    //updateList(reservation);
   }
 
   //orginal style
