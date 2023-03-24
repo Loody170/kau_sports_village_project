@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kau_sports_village_project/dummy_data.dart';
@@ -7,29 +8,56 @@ import '../models/reservation.dart';
 
 
 class ReservationItem extends StatelessWidget {
-  late String venueName;
-  late String venueImage;
-  late String reservedDate;
-  late String peroid;
-  late String reservationStatus;
-  late int reservationNumber;
+  // late String venueName;
+  // //late Future<String> venueImage;
+  // late String reservedDate;
+  // late String peroid;
+  // late String reservationStatus;
+  // late int reservationNumber;
+  late Reservation reservation;
   late Function setState;
 
   ReservationItem(
-      {required this.venueName, required this.venueImage, required this.reservedDate,
-    required this.peroid, required this.reservationStatus,
-  required this.reservationNumber, required this.setState});
+      {
+  //       required this.venueName,
+  //       //required this.venueImage,
+  //       required this.reservedDate,
+  //   required this.peroid, required this.reservationStatus,
+  // required this.reservationNumber,
+        required this.reservation,
+        required this.setState});
 
-  var format = DateFormat('yyyy-MM-dd');
   //
   // String formatDate(){
   //   return format.format(reservedDate);
   // }
 
-  void deleteReservation(int reservationNumber){
-    List<Reservation> listOfReservations = l as List<Reservation>;
-    int index = listOfReservations.indexWhere((element) => element.reservationNumber == reservationNumber);
-    listOfReservations.removeAt(index);
+  Future<void> deleteReservation(int rNumber) async {
+    var snapshot = await FirebaseFirestore.instance.collection('reservations')
+        .where('number', isEqualTo: rNumber).get();
+    // If there are no documents that match the query, return early
+    if (snapshot.docs.isEmpty) {
+      return;
+    }
+    // If there is at least one document that matches the query, delete it/them
+    for (DocumentSnapshot doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
+  }
+
+  Future <String> readVenueImage(String type, String title, int number)async  {
+    final CollectionReference collectionRef = 
+    FirebaseFirestore.instance.collection(type+'_sport_venues');
+
+    Query query = collectionRef.where('title', isEqualTo: title).limit(1)
+        .where('number', isEqualTo: number).limit(1);
+
+    final QuerySnapshot snapshot = await query.get();
+    final List<DocumentSnapshot> documents = snapshot.docs;
+
+      final DocumentSnapshot document = documents.first;
+      Map map = (document.data()) as Map;
+      return map['imageUrl'];
   }
 
   Widget confirmDialog(BuildContext context){
@@ -37,7 +65,7 @@ class ReservationItem extends StatelessWidget {
       child: Text("Yes"),
       onPressed:  () {
         print('yes is pressed');
-        deleteReservation(reservationNumber);
+        deleteReservation(reservation.reservationNumber);
         setState();
         Navigator.of(context).pop();
       },
@@ -62,30 +90,51 @@ class ReservationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    readVenueImage(reservation.reservedVenueType,
+              reservation.reservedVenueName,
+            reservation.reservedVenueNumber
+          );
     return Center(
       child: Card(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
              ListTile(visualDensity: VisualDensity(vertical: 4),
-              leading: ClipRRect(
-                     borderRadius: BorderRadius.all(Radius.circular(15)
+
+              leading:
+              FutureBuilder(
+                future: readVenueImage(reservation.reservedVenueType,
+                    reservation.reservedVenueName,
+                    reservation.reservedVenueNumber
+                ),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    var pic = snapshot!;
+                    return ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(15)
                         ),
-                         child: Image.network(venueImage, height: 100, width: 100, fit: BoxFit.fill,)),
-              title: Text(venueName),
+                        child: Image.network(
+                          pic.data!, height: 100, width: 100, fit: BoxFit.fill,)
+                    );
+                  }
+                  return Text('Loading...');
+                }
+                ),
+
+              title: Text(reservation.reservedVenueName),
               subtitle: Column(
                 children: [
                   Row(children: [
-                    Icon(Icons.calendar_month), Text(reservedDate),
-                    Padding(padding: EdgeInsets.all(10)),
-                    Icon(Icons.timer_outlined), Text(peroid),
+                    Icon(Icons.calendar_month), Text(reservation.formattedDate),
+                    Padding(padding: EdgeInsets.all(2)),
+                    Icon(Icons.timer_outlined), Text(reservation.reservationTime),
                   ],),
                   Row(children: [
-                    Icon(Icons.find_in_page_sharp), Text('Status: $reservationStatus'),
+                    Icon(Icons.find_in_page_sharp), Text('Status: ${reservation.reservationStatus}'),
                   ],),
                   Row(mainAxisAlignment: MainAxisAlignment.end,
                     children: [TextButton(onPressed: (){
-                      print(reservationNumber);
+                      print(reservation.reservationNumber);
 
                       showDialog(context: context,
                           builder: (BuildContext context){

@@ -36,7 +36,8 @@ class ReservationForm extends StatefulWidget {
       label = 'Player ${i+1}';
       fields.add(Row(children: [
         Expanded(child: Padding(padding: EdgeInsets.all(10),
-          child: TextFormField(decoration: InputDecoration(labelText:label,),
+          child: TextFormField(
+            decoration: InputDecoration(labelText:label,),
             textInputAction: TextInputAction.next,
             validator: (value){
             if((value as String)=='') {

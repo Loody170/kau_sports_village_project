@@ -23,22 +23,28 @@ class _UserReservationsScreenState extends State<UserReservationsScreen> {
     });
   }
 
-  // String readVenues(String type, String title, int number) {
-  //   String img = '';
-  //
-  //     var snapshots = FirebaseFirestore.instance
-  //         .collection(type+'_sport_venues')
-  //         .where('title', isEqualTo: title)
-  //         .where('number', isEqualTo: number)
-  //         .snapshots();
-  //
-  //     snapshots.map((snapshot) =>
-  //         snapshot.docs.map((doc) {
-  //           img = doc.data()['imageUrl'];
-  //         })
-  //     );
-  //     return img;
-  // }
+  Future <String> readVenueImage(String type, String title, int number) async {
+    String img = '';
+
+    print(type+'_sport_venues');
+      var snapshots = await FirebaseFirestore.instance
+          .collection(type+'_sport_venues')
+          .where('title', isEqualTo: title)
+          .where('number', isEqualTo: number)
+          .snapshots();
+      print('query done');
+
+      print('entering map loop');
+      print(snapshots.isEmpty);
+      snapshots.map((snapshot) =>
+          snapshot.docs.map((doc) {
+            print(doc.data());
+            img = doc.data()['imageUrl'];
+            print('assignment done');
+          })
+      );
+      return img;
+  }
 
   Stream<List<Reservation>>
   readReservations() {
@@ -68,20 +74,26 @@ class _UserReservationsScreenState extends State<UserReservationsScreen> {
             children:
             reteivedReservations.map((reservation) {
 
-              // String pic = readVenues(reservation.reservedVenueType,
+              // Future<String> pic = readVenueImage(reservation.reservedVenueType,
               //     reservation.reservedVenueName,
               //     reservation.reservedVenueNumber);
+              // String picStr =  pic as String;
 
               return
                 ReservationItem(
-                  venueName: reservation.reservedVenueName,
+                  // venueName: reservation.reservedVenueName,
+
                   //testttt TODO
-                  venueImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/The_Santiago_Bernabeu_Stadium_-_U-g-g-B-o-y.jpg/640px-The_Santiago_Bernabeu_Stadium_-_U-g-g-B-o-y.jpg',
-                  reservedDate: reservation.formattedDate,
-                  peroid: reservation.reservationTime,
-                  reservationStatus: reservation.reservationStatus,
-                  reservationNumber: reservation.reservationNumber,
-                  setState: updateScreen,);}).toList(),
+                  // venueImage: readVenueImage(reservation.reservedVenueType,
+                  //     reservation.reservedVenueName,
+                  //     reservation.reservedVenueNumber),
+
+                  // reservedDate: reservation.formattedDate,
+                  // peroid: reservation.reservationTime,
+                  // reservationStatus: reservation.reservationStatus,
+                  // reservationNumber: reservation.reservationNumber,
+                  setState: updateScreen,
+                reservation: reservation,);}).toList(),
 
           );
 
