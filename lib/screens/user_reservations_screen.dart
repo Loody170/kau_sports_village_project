@@ -68,35 +68,37 @@ class _UserReservationsScreenState extends State<UserReservationsScreen> {
       body: StreamBuilder(
         stream: readReservations(),
         builder: (context, snapshot) {
-          final reteivedReservations = snapshot.data!;
-          return
-          Column(
-            children:
-            reteivedReservations.map((reservation) {
-
-              // Future<String> pic = readVenueImage(reservation.reservedVenueType,
-              //     reservation.reservedVenueName,
-              //     reservation.reservedVenueNumber);
-              // String picStr =  pic as String;
-
-              return
-                ReservationItem(
-                  // venueName: reservation.reservedVenueName,
-
-                  //testttt TODO
-                  // venueImage: readVenueImage(reservation.reservedVenueType,
+          if (snapshot.hasData) {
+            final reteivedReservations = snapshot.data!;
+            return
+              Column(
+                children:
+                reteivedReservations.map((reservation) {
+                  // Future<String> pic = readVenueImage(reservation.reservedVenueType,
                   //     reservation.reservedVenueName,
-                  //     reservation.reservedVenueNumber),
+                  //     reservation.reservedVenueNumber);
+                  // String picStr =  pic as String;
 
-                  // reservedDate: reservation.formattedDate,
-                  // peroid: reservation.reservationTime,
-                  // reservationStatus: reservation.reservationStatus,
-                  // reservationNumber: reservation.reservationNumber,
-                  setState: updateScreen,
-                reservation: reservation,);}).toList(),
+                  return
+                    ReservationItem(
+                      // venueName: reservation.reservedVenueName,
 
-          );
+                      //testttt TODO
+                      // venueImage: readVenueImage(reservation.reservedVenueType,
+                      //     reservation.reservedVenueName,
+                      //     reservation.reservedVenueNumber),
 
+                      // reservedDate: reservation.formattedDate,
+                      // peroid: reservation.reservationTime,
+                      // reservationStatus: reservation.reservationStatus,
+                      // reservationNumber: reservation.reservationNumber,
+                      setState: updateScreen,
+                      reservation: reservation,);
+                }).toList(),
+
+              );
+          }
+          return Text('Loading...');
         }
       )
       ,);

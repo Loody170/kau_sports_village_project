@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class SignInScreen extends StatefulWidget {
   static String routeName = '/sign-in';
@@ -43,15 +45,17 @@ class _SignInScreenState extends State<SignInScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.android,
-                size: 100,),
-                SizedBox(height: 75,),
+                // Icon(Icons.android,
+                // size: 100,),
+                // SizedBox(height: 75,)
+              Image.network('https://i.imgur.com/NgLqJvP.png', scale: 0.8,)
+                ,
                 
-                Text('Hello Again',),
+                Text('Hello Again', style: GoogleFonts.publicSans(fontSize: 45),),
 
                 SizedBox(height: 10,),
-                Text('Welcome back!'),
-                SizedBox(height: 50,),
+                Text('Welcome back!', style: GoogleFonts.publicSans(fontSize: 15),),
+                SizedBox(height: 25,),
 
                 Padding(padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextField(
@@ -102,7 +106,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Container(
                       padding: EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.deepPurple,
+                        color: Theme.of(context).accentColor,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Center(
@@ -118,7 +122,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   Text('Not a member?   ', style: TextStyle(fontWeight: FontWeight.bold),),
                   GestureDetector(onTap: widget.showSignUpScreen,
-                      child: Text('Register Now', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),))
+                      child: Text('Register Now', style: TextStyle(fontWeight: FontWeight.bold,
+                          color: Colors.blue),))
                 ],)
 
               ],

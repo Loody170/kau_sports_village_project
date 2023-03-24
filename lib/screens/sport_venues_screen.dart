@@ -12,26 +12,6 @@ class SportVenuesScreen extends StatelessWidget {
   List<SportVenue> venuesList =[];
   late List<Map<String, dynamic>> listMap;
 
-
-  // List<SportVenue> displayedVenues = DUMMY_SPORTVENUES.where((venue){
-  //   return venue.typeOfSport.contains('');
-  // }).toList();
-
-  //Stream<List<Reservation>>
-  readReservations() {
-    //return
-    FirebaseFirestore.instance
-        .collection('reservations')
-        .snapshots().map((snapshot) =>
-        snapshot.docs.map((doc) {
-          print('printing rezzz');
-          print(doc.data());
-          //return
-          Reservation.fromJson(doc.data());
-        }).toList());
-  }
-
-  //TODO here
   Stream<List<SportVenue>> readVenues(String type) {
     return
       FirebaseFirestore.instance
@@ -59,7 +39,7 @@ class SportVenuesScreen extends StatelessWidget {
     //   print(element.typeOfSport);
     // });
 
-    return Scaffold(appBar: AppBar(title: Text(title),),
+    return Scaffold(appBar: AppBar(title: Text(title + ' Venues'),),
         body:
         //
         // ListView(children:

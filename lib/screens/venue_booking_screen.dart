@@ -40,8 +40,9 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
   @override
   Widget build(BuildContext context) {
     final routeArgs = ModalRoute.of(context)?.settings.arguments as Map<String, VenueItem>;
+    String barTitle = routeArgs['venueObject']!.title;
 
-    return Scaffold(appBar: AppBar(title: Text('booking screen'),),
+    return Scaffold(appBar: AppBar(title: Text(barTitle),),
     body: SingleChildScrollView(child: Column(
       children: [
         Container(height: 350, width: double.infinity,

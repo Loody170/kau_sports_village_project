@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         accentColor: Colors.deepOrange[800],
+        fontFamily: 'Raleway'
       ),
       //home: TabsScreen(),
       //initialRoute: '/',

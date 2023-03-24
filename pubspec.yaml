@@ -35,6 +35,7 @@ dependencies:
   firebase_auth: ^4.3.0
   firebase_core: ^2.8.0
   cloud_firestore: ^4.4.5
+  google_fonts: ^4.0.3
   #image_picker:
 
   # The following adds the Cupertino Icons font to your application.
@@ -81,6 +82,23 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+fonts:
+  - family: Raleway
+    fonts:
+      - asset: assets/fonts/Raleway-Regular.ttf
+      - asset: assets/fonts/Raleway-Bold.ttf
+        weight: 700
+      - asset: assets/fonts/Raleway-Black.ttf
+        weight: 900
+  - family: RobotoCondensed
+    fonts:
+      - asset: assets/fonts/RobotoCondensed-Regular.ttf
+      - asset: assets/fonts/RobotoCondensed-Bold.ttf
+        weight: 700
+      - asset: assets/fonts/RobotoCondensed-Light.ttf
+        weight: 300
+      - asset: assets/fonts/RobotoCondensed-Italic.ttf
+        style: italic
   # fonts:
   #   - family: Schyler
   #     fonts:

@@ -44,9 +44,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.android,
-                  size: 100,),
-                SizedBox(height: 75,),
+
+                Image.network('https://i.imgur.com/NgLqJvP.png', scale: 0.8,)
+
+                ,
 
                 Text('Hello There',),
 
@@ -63,7 +64,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Text('Already a member?   ', style: TextStyle(fontWeight: FontWeight.bold),),
                     GestureDetector(onTap: widget.showSignInScreen,
                         child: Text('Sign in', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),))
-                  ],)
+                  ],),
+                SizedBox(height: 50,)
 
               ],
             ),
