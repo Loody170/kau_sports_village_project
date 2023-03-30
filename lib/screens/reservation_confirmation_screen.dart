@@ -170,7 +170,7 @@ class ReservationConfirmationScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 8.0),
                         Container(
-                          height: 300,
+                          height: 200,
                           width: double.infinity,
                           child: ListView.builder(
                             shrinkWrap: true,

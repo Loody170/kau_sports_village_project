@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'KAU Sports Village',
       theme: ThemeData(
         primarySwatch: Colors.green,
-        accentColor: Colors.deepOrange[800],
+        accentColor: Colors.orangeAccent,
         fontFamily: 'Raleway'
       ),
       //home: TabsScreen(),

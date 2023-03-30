@@ -4,31 +4,37 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kau_sports_village_project/models/reservation.dart';
 import 'package:kau_sports_village_project/models/sport_venue.dart';
+import 'package:kau_sports_village_project/screens/venue_booking_screen.dart';
 import 'package:kau_sports_village_project/widgets/venue_item.dart';
 import 'package:kau_sports_village_project/dummy_data.dart';
 
 class PeroidButtons extends StatefulWidget {
   DateTime selectedDate;
   VenueItem chosenVenue;
-  static late String chosenPeroid;
-  bool button1 = false;
-  bool button2 = false;
-  bool button3 = false;
+  static String chosenPeroid = '';
+  static bool button1 = false;
+  static bool button2 = false;
+  static bool button3 = false;
+  Function refreshBookingScreen;
+
   //late final listofR;
 
 
-  PeroidButtons({required this.selectedDate, required this.chosenVenue});
+  PeroidButtons({
+    required this.refreshBookingScreen,
+    required this.selectedDate,
+    required this.chosenVenue
+  });
 
   @override
   State<PeroidButtons> createState() => _PeroidButtonsState();
+
 }
 
 class _PeroidButtonsState extends State<PeroidButtons> {
-
   // bool get isReserved {
   //   return checkIfReserved(widget.listofR, formatDate(widget.selectedDate), widget.chosenVenue, '4-6');
   // }
-
   Stream<List<Reservation>>
   readReservations() {
     return
@@ -92,46 +98,68 @@ class _PeroidButtonsState extends State<PeroidButtons> {
 
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            ElevatedButton(style: widget.button1 ? ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple) : ElevatedButton.styleFrom(
+            ElevatedButton(style: PeroidButtons.button1 ? ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepOrangeAccent) : ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal),
                 onPressed: checkIfReserved(reteivedReservations,
                     formatDate(widget.selectedDate), widget.chosenVenue,
                     '4:00PM to 6:00PM') ? null : () {
-                  PeroidButtons.chosenPeroid = '4:00PM to 6:00PM';
+                 // PeroidButtons.chosenPeroid = '4:00PM to 6:00PM';
                   setState(() {
-                    widget.button1 = true;
-                    widget.button2 = false;
-                    widget.button3 = false;
+                    PeroidButtons.button1 = true;
+                    PeroidButtons.button2 = false;
+                    PeroidButtons.button3 = false;
+                    print(PeroidButtons.button1);
+
+                    print(PeroidButtons.button2);
+                    print(PeroidButtons.button3);
+                    widget.refreshBookingScreen();
+                    PeroidButtons.chosenPeroid = '4:00PM to 6:00PM';
+                    VenueBookingScreen.chosenTime = '4:00PM to 6:00PM';
                   });
                 }, child: Text('4:00PM -\n6:00PM')),
 
-            ElevatedButton(style: widget.button2 ? ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple) : ElevatedButton.styleFrom(
+            ElevatedButton(style: PeroidButtons.button2 ? ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepOrangeAccent) : ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal),
                 onPressed:  checkIfReserved(reteivedReservations,
                     formatDate(widget.selectedDate), widget.chosenVenue,
                     '6:00PM to 8:00PM') ? null : () {
-                  PeroidButtons.chosenPeroid = '6:00PM to 8:00PM';
+                  // PeroidButtons.chosenPeroid = '6:00PM to 8:00PM';
                   setState(() {
-                    widget.button1 = false;
-                    widget.button2 = true;
-                    widget.button3 = false;
+                    PeroidButtons.button1 = false;
+                    PeroidButtons.button2 = true;
+                    PeroidButtons.button3 = false;
+                    print(PeroidButtons.button1);
+
+                    print(PeroidButtons.button2);
+                    print(PeroidButtons.button3);
+                    widget.refreshBookingScreen();
+                    PeroidButtons.chosenPeroid = '6:00PM to 8:00PM';
+                    VenueBookingScreen.chosenTime = '6:00PM to 8:00PM';
                   });
                 },
                 child: Text('6:00PM -\n8:00PM')),
 
-            ElevatedButton(style: widget.button3 ? ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple) : ElevatedButton.styleFrom(
+            ElevatedButton(style: PeroidButtons.button3 ? ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepOrangeAccent) : ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal),
                 onPressed: checkIfReserved(reteivedReservations,
                     formatDate(widget.selectedDate), widget.chosenVenue,
                     '8:00PM to 10:00PM') ? null : () {
-                  PeroidButtons.chosenPeroid = '8:00PM to 10:00PM';
+                  // PeroidButtons.chosenPeroid = '8:00PM to 10:00PM';
                   setState(() {
-                    widget.button1 = false;
-                    widget.button2 = false;
-                    widget.button3 = true;
+                    PeroidButtons.button1 = false;
+                    PeroidButtons.button2 = false;
+                    PeroidButtons.button3 = true;
+                    print(PeroidButtons.button1);
+
+                    print(PeroidButtons.button2);
+                    print(PeroidButtons.button3);
+                    widget.refreshBookingScreen();
+                    PeroidButtons.chosenPeroid = '8:00PM to 10:00PM';
+                    VenueBookingScreen.chosenTime = '8:00PM to 10:00PM';
+
                   });
                 },
                 child: Text('8:00PM -\n10:00PM'))

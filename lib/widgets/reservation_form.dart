@@ -35,7 +35,7 @@ class ReservationForm extends StatefulWidget {
     for (int i =0; i< venueCapacity; i++){
       label = 'Player ${i+1}';
       fields.add(Row(children: [
-        Expanded(child: Padding(padding: EdgeInsets.all(10),
+        Expanded(child: Padding(padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
           child: TextFormField(
             decoration: InputDecoration(labelText:label,),
             textInputAction: TextInputAction.next,
@@ -57,24 +57,27 @@ class ReservationForm extends StatefulWidget {
         ),
         ),
         SizedBox(width: 10),
-        Expanded(child: TextFormField(decoration: InputDecoration(labelText: 'University ID',),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.number,
-          validator: (value){
-            if((value as String)=='') {
-              print('no number provided');
-              print(value);
-              return 'University ID can\'t be empty';
-            }
-            RegExp numberRegex = RegExp(r'^[1-2]\d{6}$');
-            if(!numberRegex.hasMatch(value as String)){
-              return 'Entered University ID is invalid';
-            }
-          },
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          onSaved: (value){
-            listOfPlayers.add(value);
-          },),
+        Expanded(child: Padding(
+          padding: EdgeInsets.only(left: 25),
+          child: TextFormField(decoration: InputDecoration(labelText: 'University ID',),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.number,
+            validator: (value){
+              if((value as String)=='') {
+                print('no number provided');
+                print(value);
+                return 'University ID can\'t be empty';
+              }
+              RegExp numberRegex = RegExp(r'^[1-2]\d{6}$');
+              if(!numberRegex.hasMatch(value as String)){
+                return 'Entered University ID is invalid';
+              }
+            },
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            onSaved: (value){
+              listOfPlayers.add(value);
+            },),
+        ),
         ),
       ],)
       );
@@ -112,21 +115,24 @@ class _ReservationFormState extends State<ReservationForm> {
           Column(children:
             this.widget.makeFields()
           ),
-          ElevatedButton(onPressed: (){
-
-            this.saveForm();
-            this.widget.updateMap(this.widget.listOfPlayers, this.widget.formData, );
-            print('map is :');
-            print(this.widget.formData);
-            if(!this.validateForm())
-              return;
-            else
-              print('yaaaaay');
-            Navigator.of(context).pushNamed(ReservationConfirmationScreen.routeName, arguments: [
-              this.widget.receivedArgs,
-              this.widget.formData
-            ]);
-          }, child: Text('Confirm'))
+          Padding(
+            padding: EdgeInsets.all(30),
+            child: ElevatedButton(onPressed: (){
+              if(!this.validateForm())
+                return;
+              else {
+                print('yaaaaay');
+                this.saveForm();
+                this.widget.updateMap(this.widget.listOfPlayers, this.widget.formData, );
+                print('map is :');
+                print(this.widget.formData);
+              }
+              Navigator.of(context).pushNamed(ReservationConfirmationScreen.routeName, arguments: [
+                this.widget.receivedArgs,
+                this.widget.formData
+              ]);
+            }, child: Text('Confirm')),
+          )
         ],
       ),
     ),),
