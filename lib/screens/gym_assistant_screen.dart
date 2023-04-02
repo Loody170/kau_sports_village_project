@@ -33,6 +33,7 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
           ElevatedButton(
             onPressed: () {
               scanQRCode();
+              print('dd');
             },
             child: Text('Scan QR'),
           ),
