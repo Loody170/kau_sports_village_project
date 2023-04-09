@@ -133,7 +133,7 @@ class ReservationItem extends StatelessWidget {
                     Icon(Icons.find_in_page_sharp), Text('Status: ${reservation.reservationStatus}'),
                   ],),
                   Row(mainAxisAlignment: MainAxisAlignment.end,
-                    children: [TextButton(onPressed: (){
+                    children: [TextButton(onPressed: (reservation.reservationStatus == 'pending')?(){
                       print(reservation.reservationNumber);
 
                       showDialog(context: context,
@@ -141,7 +141,8 @@ class ReservationItem extends StatelessWidget {
                         return confirmDialog(context);
                           });
 
-                    }, child: Text('Delete reservation'))
+
+                    } : null, child: Text('Delete reservation'))
 
                   ],)
                 ],

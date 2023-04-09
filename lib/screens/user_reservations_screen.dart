@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:kau_sports_village_project/dummy_data.dart';
 import 'package:kau_sports_village_project/models/reservation.dart';
 import 'package:kau_sports_village_project/widgets/reservations_item.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../models/sport_venue.dart';
 import '../widgets/main_drawer.dart';
@@ -61,41 +62,91 @@ class _UserReservationsScreenState extends State<UserReservationsScreen> {
           }).toList());
   }
 
+  Stream<List<Reservation>>
+  readRejectedReservations() {
+    return
+      FirebaseFirestore.instance
+          .collection('rejectedReservations')
+          .where('user', isEqualTo:FirebaseAuth.instance.currentUser!.uid )
+          .snapshots().map((snapshot) =>
+          snapshot.docs.map((doc) {
+            print('printing rejected rezzz');
+            print(doc.data());
+            return
+              Reservation.fromJson(doc.data());
+          }).toList());
+  }
+
+  Stream<List<Reservation>>
+  readAcceptedReservations() {
+    return
+      FirebaseFirestore.instance
+          .collection('acceptedReservations')
+          .where('user', isEqualTo:FirebaseAuth.instance.currentUser!.uid )
+          .snapshots().map((snapshot) =>
+          snapshot.docs.map((doc) {
+            print('printing rejected rezzz');
+            print(doc.data());
+            return
+              Reservation.fromJson(doc.data());
+          }).toList());
+  }
+
+  Stream<List<Reservation>>
+  combineReservations() {
+    Stream<List<Reservation>> reservations = readReservations();
+    Stream<List<Reservation>> rejectedReservations = readRejectedReservations();
+    Stream<List<Reservation>> acceptedReservations = readAcceptedReservations();
+
+    Stream<List<Reservation>> combinedStream = CombineLatestStream.combine3(
+      reservations,
+      rejectedReservations,
+      acceptedReservations,
+          (list1, list2, list3) => [...list1, ...list2, ...list3],
+    );
+    return combinedStream;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(drawer: MainDrawer(),
       appBar: AppBar(title: Text('My Reservations'),),
       body: StreamBuilder(
-        stream: readReservations(),
+        stream:
+        // readReservations()
+          combineReservations()
+          ,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final reteivedReservations = snapshot.data!;
             return
-              Column(
-                children:
-                reteivedReservations.map((reservation) {
-                  // Future<String> pic = readVenueImage(reservation.reservedVenueType,
-                  //     reservation.reservedVenueName,
-                  //     reservation.reservedVenueNumber);
-                  // String picStr =  pic as String;
+              SingleChildScrollView(
+                child: Column(
+                  children:
+                  reteivedReservations.map((reservation) {
+                    // Future<String> pic = readVenueImage(reservation.reservedVenueType,
+                    //     reservation.reservedVenueName,
+                    //     reservation.reservedVenueNumber);
+                    // String picStr =  pic as String;
 
-                  return
-                    ReservationItem(
-                      // venueName: reservation.reservedVenueName,
+                    return
+                      ReservationItem(
+                        // venueName: reservation.reservedVenueName,
 
-                      //testttt TODO
-                      // venueImage: readVenueImage(reservation.reservedVenueType,
-                      //     reservation.reservedVenueName,
-                      //     reservation.reservedVenueNumber),
+                        //testttt TODO
+                        // venueImage: readVenueImage(reservation.reservedVenueType,
+                        //     reservation.reservedVenueName,
+                        //     reservation.reservedVenueNumber),
 
-                      // reservedDate: reservation.formattedDate,
-                      // peroid: reservation.reservationTime,
-                      // reservationStatus: reservation.reservationStatus,
-                      // reservationNumber: reservation.reservationNumber,
-                      setState: updateScreen,
-                      reservation: reservation,);
-                }).toList(),
+                        // reservedDate: reservation.formattedDate,
+                        // peroid: reservation.reservationTime,
+                        // reservationStatus: reservation.reservationStatus,
+                        // reservationNumber: reservation.reservationNumber,
+                        setState: updateScreen,
+                        reservation: reservation,);
+                  }).toList(),
 
+                ),
               );
           }
           return Text('Loading...');

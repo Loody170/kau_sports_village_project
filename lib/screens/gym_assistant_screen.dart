@@ -7,6 +7,8 @@ import 'package:kau_sports_village_project/dummy_data.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'dart:io';
+
+import 'package:kau_sports_village_project/screens/equipment_information_screen.dart';
 //import 'package:image_picker/image_picker.dart';
 //import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
@@ -22,11 +24,7 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('KAU Gym assistant'),
-      ),
-      body: Center(
+    return Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -40,9 +38,16 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
           SizedBox(
             height: 20.0,
           ),
+
+          ElevatedButton(onPressed: (){
+            getResult = 'treadmill';
+
+            getiinfo(getResult);
+            Navigator.of(context).pushNamed(EquipmentInformationScreen.routeName, arguments: getResult);
+
+          }, child: Text('test qr code'))
         ],
-      )),
-    );
+      ));
   }
 
   void scanQRCode() async {
@@ -56,6 +61,7 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
         getResult = qrCode;
       });
       print("QRCode_Result:--");
+      Navigator.of(context).pushNamed(EquipmentInformationScreen.routeName, arguments: getResult);
       getiinfo(getResult);
     } on PlatformException {
       getResult = 'Failed to scan QR Code.';
@@ -68,13 +74,13 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
         .doc(key)
         .get();
 
-    String _name = info.get('name');
-    String _des = info.get('description');
-    String _info = info.get('info');
-    print("name $_name");
-    print("description $_des");
-    print("information $_info");
-    infocard(_name, _des, _info);
+    // String _name = info.get('name');
+    // String _des = info.get('description');
+    // String _info = info.get('info');
+    // print("name $_name");
+    // print("description $_des");
+    // print("information $_info");
+    // infocard(_name, _des, _info);
   }
 
   Widget infocard(String name, String des, String info) {
