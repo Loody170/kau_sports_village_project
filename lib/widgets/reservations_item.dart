@@ -114,7 +114,7 @@ class ReservationItem extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(15)
                         ),
                         child: Image.network(
-                          pic.data!, height: 100, width: 100, fit: BoxFit.fill,)
+                          pic.data!, height: 100, width: 90, fit: BoxFit.fitHeight,)
                     );
                   }
                   return Text('Loading...');
@@ -126,7 +126,6 @@ class ReservationItem extends StatelessWidget {
                 children: [
                   Row(children: [
                     Icon(Icons.calendar_month), Text(reservation.formattedDate),
-                    Padding(padding: EdgeInsets.all(2)),
                     Icon(Icons.timer_outlined), Text(reservation.reservationTime),
                   ],),
                   Row(children: [
@@ -140,7 +139,6 @@ class ReservationItem extends StatelessWidget {
                           builder: (BuildContext context){
                         return confirmDialog(context);
                           });
-
 
                     } : null, child: Text('Delete reservation'))
 

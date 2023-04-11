@@ -45,8 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
-                Image.network('https://i.imgur.com/NgLqJvP.png', scale: 0.8,)
-
+                Image.asset('assets/App logo.png', scale: 0.8,)
                 ,
 
                 Text('Hello There',),

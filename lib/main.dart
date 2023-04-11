@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kau_sports_village_project/main_screen.dart';
 import 'package:kau_sports_village_project/screens/auth_screen.dart';
+import 'package:kau_sports_village_project/screens/equipment_history_screen.dart';
 import 'package:kau_sports_village_project/screens/equipment_information_screen.dart';
 import 'package:kau_sports_village_project/screens/reservation_successful_screen.dart';
 import 'package:kau_sports_village_project/screens/gym_assistant_screen.dart';
@@ -42,6 +43,8 @@ class MyApp extends StatelessWidget {
             ReservationSuccessfulScreen(),
         UserReservationsScreen.routeName: (ctx) => UserReservationsScreen(),
         EquipmentInformationScreen.routeName: (ctx) => EquipmentInformationScreen(),
+        EquipmentHistoryScreen.routeName: (ctx) => EquipmentHistoryScreen(),
+
 
       },
     );

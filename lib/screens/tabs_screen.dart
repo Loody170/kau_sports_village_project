@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kau_sports_village_project/screens/equipment_history_screen.dart';
 import 'package:kau_sports_village_project/screens/gym_assistant_screen.dart';
 import 'package:kau_sports_village_project/screens/sport_categories_screen.dart';
 
@@ -28,6 +29,16 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(_pages[_selectedPageIndex]['title'].toString()),
+        actions: _selectedPageIndex == 1?
+        [
+          IconButton(
+            icon: Icon(Icons.history),
+            onPressed: () {
+              Navigator.of(context).pushNamed(EquipmentHistoryScreen.routeName);
+            },
+          )
+        ]
+            : null,
       ),
       drawer: MainDrawer(),
       body: _pages[_selectedPageIndex]['page'] as Widget,

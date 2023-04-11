@@ -48,7 +48,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 // Icon(Icons.android,
                 // size: 100,),
                 // SizedBox(height: 75,)
-              Image.network('https://i.imgur.com/NgLqJvP.png', scale: 0.8,)
+              Image.asset('assets/App logo.png', scale: 0.8,)
                 ,
                 
                 Text('Hello Again', style: GoogleFonts.publicSans(fontSize: 45),),

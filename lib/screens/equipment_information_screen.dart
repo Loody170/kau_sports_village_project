@@ -39,9 +39,6 @@ class EquipmentInformationScreen extends StatelessWidget {
     print(equipment);
     return equipment;
 
-
-
-
     // .then((value){
             // if(value.exists){
             //   Map<String, dynamic>? data = value.data();
@@ -101,7 +98,7 @@ class EquipmentInformationScreen extends StatelessWidget {
                               borderRadius: BorderRadius.all(Radius.circular(50)),
                               child: Image.network(
                                 snapshot.data!,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fill,
                         )),
                   );
                 }
@@ -130,7 +127,7 @@ class EquipmentInformationScreen extends StatelessWidget {
                               borderRadius: BorderRadius.all(Radius.circular(50)),
                               child: Image.network(
                                 snapshot.data!,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fill,
                               )),
                         );
                       }
