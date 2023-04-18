@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kau_sports_village_project/screens/tabs_screen.dart';
 
 
 class SignInScreen extends StatefulWidget {
@@ -124,7 +125,14 @@ class _SignInScreenState extends State<SignInScreen> {
                   GestureDetector(onTap: widget.showSignUpScreen,
                       child: Text('Register Now', style: TextStyle(fontWeight: FontWeight.bold,
                           color: Colors.blue),))
-                ],)
+                ],),
+                SizedBox(height: 10,),
+
+                GestureDetector(
+                  onTap: (){Navigator.pushReplacementNamed(context, TabsScreen.routeName);},
+                  child: Text('Skip for now', style: TextStyle(fontWeight: FontWeight.bold,
+                      color: Colors.blue),),
+                ),
 
               ],
             ),

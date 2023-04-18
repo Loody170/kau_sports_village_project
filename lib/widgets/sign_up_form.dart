@@ -60,7 +60,9 @@ class SignUpForm extends StatelessWidget {
       'Department': department,
       'KAU ID': universityId,
       'Phone Number': phoneNumber,
-      'Email': email
+      'Email': email,
+      'Height': '',
+      'Weight': '',
     });
 
 

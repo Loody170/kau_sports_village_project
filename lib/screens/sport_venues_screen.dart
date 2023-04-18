@@ -60,6 +60,7 @@ class SportVenuesScreen extends StatelessWidget {
 
         if(snapshot.hasData) {
           final venues = snapshot.data!;
+          print('inside snapshot!');
           return
             ListView(children:
             venues.map((venue) {
@@ -73,6 +74,7 @@ class SportVenuesScreen extends StatelessWidget {
             }).toList()
               ,);
         }
+        print('no snapshot why?');
         return Text('Loading...');
       },)
 

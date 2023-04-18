@@ -6,6 +6,8 @@ import 'package:kau_sports_village_project/screens/sport_categories_screen.dart'
 import '../widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
+  static String routeName = '/tabs-screen';
+
   @override
   State<TabsScreen> createState() => _TabsScreenState();
 }

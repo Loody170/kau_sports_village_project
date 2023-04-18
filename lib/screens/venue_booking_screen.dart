@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:kau_sports_village_project/main_screen.dart';
 import 'package:kau_sports_village_project/models/sport_venue.dart';
 import 'package:kau_sports_village_project/screens/reservation_form_screen.dart';
+import 'package:kau_sports_village_project/screens/sign_in_screen.dart';
 import 'package:kau_sports_village_project/widgets/period_buttons.dart';
 import 'package:kau_sports_village_project/widgets/venue_item.dart';
 
@@ -42,6 +45,8 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
         PeroidButtons.button2 ||
         PeroidButtons.button3;
   }
+
+
 
   Widget buildCard(DateTime dt, String chosenPeriod) {
     String date = formatDate(dt);
@@ -86,6 +91,32 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
                 //VenueBookingScreen.buttons = PeroidButtons(selectedDate: _dateTime, chosenVenue: routeArgs['venueObject'] as VenueItem,);
               })
             });
+  }
+
+  Widget signInDialog(BuildContext context){
+    Widget signInButton = TextButton(
+      child: Text("Sign in"),
+      onPressed:  () {
+        
+        Navigator.of(context).pushNamed('/');
+      },
+    );
+    Widget cancelButton = TextButton(
+      child: Text("Cancel"),
+      onPressed:  () {
+        Navigator.of(context).pop();
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: Text("Alert"),
+      content: Text("You need to sign in to be able to reserve a venue"),
+      actions: [
+        signInButton,
+        cancelButton,
+      ],
+    );
+    return alert;
+
   }
 
   @override
@@ -157,15 +188,25 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
                   child: ElevatedButton(
                       onPressed: !isButtonPressed()
                           ? null
-                          : () {
-                              print(PeroidButtons.chosenPeroid);
-                              Navigator.of(context).pushNamed(
-                                  ReservationFormScreen.routeName,
-                                  arguments: [
-                                    routeArgs['venueObject'],
-                                    _dateTime,
-                                    PeroidButtons.chosenPeroid
-                                  ]);
+                          : () async{
+                              if(FirebaseAuth.instance.currentUser == null){
+                                print('GO SIGN IN');
+                                showDialog(context: context,
+                                    builder: (BuildContext context){
+                                      return signInDialog(context);
+                                    });
+
+                              }
+                              else {
+                                print(PeroidButtons.chosenPeroid);
+                                Navigator.of(context).pushNamed(
+                                    ReservationFormScreen.routeName,
+                                    arguments: [
+                                      routeArgs['venueObject'],
+                                      _dateTime,
+                                      PeroidButtons.chosenPeroid
+                                    ]);
+                              }//else
                             },
                       child: Text('Confirm')))
             ],

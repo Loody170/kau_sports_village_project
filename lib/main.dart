@@ -8,9 +8,11 @@ import 'package:kau_sports_village_project/screens/reservation_successful_screen
 import 'package:kau_sports_village_project/screens/gym_assistant_screen.dart';
 import 'package:kau_sports_village_project/screens/reservation_confirmation_screen.dart';
 import 'package:kau_sports_village_project/screens/reservation_form_screen.dart';
+import 'package:kau_sports_village_project/screens/sign_in_screen.dart';
 import 'package:kau_sports_village_project/screens/sport_venues_screen.dart';
 import 'package:kau_sports_village_project/screens/sport_categories_screen.dart';
 import 'package:kau_sports_village_project/screens/tabs_screen.dart';
+import 'package:kau_sports_village_project/screens/user_profile_screen.dart';
 import 'package:kau_sports_village_project/screens/user_reservations_screen.dart';
 import 'package:kau_sports_village_project/screens/venue_booking_screen.dart';
 
@@ -44,6 +46,9 @@ class MyApp extends StatelessWidget {
         UserReservationsScreen.routeName: (ctx) => UserReservationsScreen(),
         EquipmentInformationScreen.routeName: (ctx) => EquipmentInformationScreen(),
         EquipmentHistoryScreen.routeName: (ctx) => EquipmentHistoryScreen(),
+        UserProfileScreen.routeName: (ctx) => UserProfileScreen(),
+
+        TabsScreen.routeName: (ctx) => TabsScreen(),
 
 
       },

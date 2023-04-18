@@ -113,7 +113,8 @@ class EquipmentInformationScreen extends StatelessWidget {
                   Container(padding: EdgeInsets.symmetric(horizontal: 15),
                       child: Text(equipment.description, textAlign: TextAlign.center,
                         style: GoogleFonts.notoSans(fontSize: 15),)),
-                  Container(margin: EdgeInsets.symmetric(vertical: 18),
+
+                  Container(margin: EdgeInsets.only(bottom: 18),
                       child: Text('Tips For Exercising', style: GoogleFonts.kanit(fontSize: 25),)),
 
                   FutureBuilder(
@@ -138,14 +139,58 @@ class EquipmentInformationScreen extends StatelessWidget {
 
 
 
-                  Column(children: 
-
+                  Column(children:
                   makeTips(equipment)
                   // equipment.workoutTips.map((e){
                   //   return Text(equipment.workoutTips[]);
                   // }).toList()
+                  ,),
 
-                  ,)
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 25.0, top: 1),
+                    margin: EdgeInsets.only(bottom: 20),
+                    child: ElevatedButton(onPressed: (){
+                      // showModalBottomSheet(context: context,
+                      //     builder: (context)=> Center(
+                      //       child: Column(
+                      //         children: [
+                      //           Text('sss')
+                      //         ],
+                      //       ),
+                      //     )
+                      // );
+                      showModalBottomSheet(
+                        context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0),
+                          ),
+                        ),
+                        builder: (BuildContext context) {
+                          return Container(
+                            height: MediaQuery.of(context).size.height * 0.45,
+                            padding: EdgeInsets.all(16),
+                            child: Column(mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                              Text(
+                              'Workouts',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                              )),
+
+                            ],),
+                          );
+                        },
+                      );
+                    }, child: Text('Suggest me a workout', style: TextStyle(fontSize: 16, color: Colors.grey[800]),),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.orangeAccent,
+
+                      ),),
+                  ),
+
 
                 ],
                 
