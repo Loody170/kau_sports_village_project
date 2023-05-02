@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kau_sports_village_project/dummy_data.dart';
+import 'package:kau_sports_village_project/app_data.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:kau_sports_village_project/insertEquipment.dart';
@@ -74,7 +74,9 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
             ),
 
             ElevatedButton(onPressed: (){
-              getResult = 'Precor Prone Leg Curl';
+              getResult =
+              // 'Precor Prone Leg Curl';
+              'Precor Vertical Knee Up';
               EquipmentHistoryScreen.addEquipmentName(getResult);
 
               //getiinfo(getResult);

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:kau_sports_village_project/dummy_data.dart';
+import 'package:kau_sports_village_project/app_data.dart';
 import 'package:kau_sports_village_project/models/reservation.dart';
 import 'package:kau_sports_village_project/widgets/reservations_item.dart';
 import 'package:rxdart/rxdart.dart';

@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:kau_sports_village_project/dummy_data.dart';
+import 'package:kau_sports_village_project/app_data.dart';
 import 'package:kau_sports_village_project/models/reservation.dart';
 import 'package:kau_sports_village_project/screens/reservation_successful_screen.dart';
 import 'package:kau_sports_village_project/widgets/venue_item.dart';

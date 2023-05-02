@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kau_sports_village_project/widgets/category_item.dart';
 
-import '../dummy_data.dart';
+import '../app_data.dart';
 
 class SportCategoriesScreen extends StatelessWidget {
   @override
@@ -11,7 +11,7 @@ class SportCategoriesScreen extends StatelessWidget {
           childAspectRatio: 2/ 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10), children:
-      DUMMY_CATEGORIES.map((catData) => CategoryItem(
+      CATEGORIES.map((catData) => CategoryItem(
           catData.type,
           catData.title,
           catData.color,

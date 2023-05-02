@@ -6,7 +6,7 @@ import 'package:kau_sports_village_project/models/reservation.dart';
 import 'package:kau_sports_village_project/models/sport_venue.dart';
 import 'package:kau_sports_village_project/screens/venue_booking_screen.dart';
 import 'package:kau_sports_village_project/widgets/venue_item.dart';
-import 'package:kau_sports_village_project/dummy_data.dart';
+import 'package:kau_sports_village_project/app_data.dart';
 
 class PeroidButtons extends StatefulWidget {
   DateTime selectedDate;

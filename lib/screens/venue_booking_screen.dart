@@ -9,7 +9,7 @@ import 'package:kau_sports_village_project/screens/sign_in_screen.dart';
 import 'package:kau_sports_village_project/widgets/period_buttons.dart';
 import 'package:kau_sports_village_project/widgets/venue_item.dart';
 
-import '../dummy_data.dart';
+import '../app_data.dart';
 
 class VenueBookingScreen extends StatefulWidget {
   static final String routeName = '/venue-booking';

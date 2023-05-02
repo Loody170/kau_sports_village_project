@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:kau_sports_village_project/dummy_data.dart';
+import 'package:kau_sports_village_project/app_data.dart';
 import 'package:kau_sports_village_project/screens/user_reservations_screen.dart';
 
 import '../models/reservation.dart';
