@@ -98,8 +98,8 @@ class ReservationConfirmationScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.network(
-                    venue.imageUrl,
+                  Image.asset(
+                    venue.imagesNames[0],
                     width: double.infinity,
                     height: 200,
                     fit: BoxFit.cover,

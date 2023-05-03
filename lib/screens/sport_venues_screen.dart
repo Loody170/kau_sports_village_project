@@ -7,22 +7,38 @@ import '../models/reservation.dart';
 import '../models/sport_venue.dart';
 
 
-class SportVenuesScreen extends StatelessWidget {
+class SportVenuesScreen extends StatefulWidget {
   static const routeName = '/sport-venues';
+
+  @override
+  State<SportVenuesScreen> createState() => _SportVenuesScreenState();
+}
+
+class _SportVenuesScreenState extends State<SportVenuesScreen> {
   List<SportVenue> venuesList =[];
+  int _currentImageIndex = 0;
+
+
   late List<Map<String, dynamic>> listMap;
 
   Stream<List<SportVenue>> readVenues(String type) {
     return
       FirebaseFirestore.instance
           .collection(type+'_sport_venues')
-          .snapshots().map((snapshot) =>
-          snapshot.docs.map((doc) {
-            print('printing venuess');
-            print(doc.data());
-            return
-            SportVenue.fromJson(doc.data());
-          }).toList());
+          .snapshots().map((snapshot) {
+        print('Number of documents: ${snapshot.size}');
+        return snapshot.docs.map((doc) {
+          print('printing doc');
+          print(doc.data());
+          return SportVenue.fromJson(doc.data());
+        }).toList();
+      });
+  }
+
+  void _handleImageChange(int index) {
+    setState(() {
+      _currentImageIndex = index;
+    });
   }
 
   @override
@@ -30,7 +46,6 @@ class SportVenuesScreen extends StatelessWidget {
     final routeArgs = ModalRoute.of(context)?.settings.arguments as Map<String, String>;
     final String type = routeArgs['type'] as String;
     final String title = routeArgs['title'] as String;
-
 
     // List<VenueItem> displayedVenues = DUMMY_SPORTVENUES.where((venue){
     //   return venue.typeOfSport.contains(type);
@@ -64,11 +79,12 @@ class SportVenuesScreen extends StatelessWidget {
           return
             ListView(children:
             venues.map((venue) {
-              return VenueItem(typeOfSport: venue.typeOfSport,
+              return VenueItem(
+                  typeOfSport: venue.typeOfSport,
                   availablePeroids: venue.availablePeroids,
                   title: venue.title,
                   capacity: venue.capacity,
-                  imageUrl: venue.imageUrl,
+                  imagesNames: venue.imagesNames,
                   number: venue.number,
                   state: venue.state);
             }).toList()

@@ -140,15 +140,14 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
                 width: 400,
                 child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(25)),
-                    child: Image.network(
-                      routeArgs['venueObject']?.imageUrl as String,
+                    child: Image.asset('assets/sport_venues_images/${
+                      routeArgs['venueObject']?.imagesNames[0] as String}.jpg',
                       fit: BoxFit.cover,
                     )),
               ),
               SizedBox(
                 height: 35,
               ),
-
               Padding(
                   padding: EdgeInsets.only(bottom: 10, top: 10),
                   child: Text(

@@ -45,8 +45,8 @@ class ReservationItem extends StatelessWidget {
     }
   }
 
-  Future <String> readVenueImage(String type, String title, int number)async  {
-    final CollectionReference collectionRef = 
+  Future <List<dynamic>> readVenueImage(String type, String title, int number)async  {
+    final CollectionReference collectionRef =
     FirebaseFirestore.instance.collection(type+'_sport_venues');
 
     Query query = collectionRef.where('title', isEqualTo: title).limit(1)
@@ -57,7 +57,7 @@ class ReservationItem extends StatelessWidget {
 
       final DocumentSnapshot document = documents.first;
       Map map = (document.data()) as Map;
-      return map['imageUrl'];
+      return map['imagesNames'];
   }
 
   Widget confirmDialog(BuildContext context){
@@ -109,12 +109,12 @@ class ReservationItem extends StatelessWidget {
                 ),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    var pic = snapshot!;
+                    var pics = snapshot!;
                     return ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(15)
                         ),
-                        child: Image.network(
-                          pic.data!, height: 100, width: 90, fit: BoxFit.fitHeight,)
+                        child: Image.asset('assets/sport_venues_images/${
+                          pics.data![0]}.jpg', height: 100, width: 90, fit: BoxFit.fitHeight,)
                     );
                   }
                   return Text('Loading...');

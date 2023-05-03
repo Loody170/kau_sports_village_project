@@ -76,7 +76,7 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
             ElevatedButton(onPressed: (){
               getResult =
               // 'Precor Prone Leg Curl';
-              'Precor Vertical Knee Up';
+              'Precor Prone Leg Cur';
               EquipmentHistoryScreen.addEquipmentName(getResult);
 
               //getiinfo(getResult);

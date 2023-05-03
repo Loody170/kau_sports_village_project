@@ -39,6 +39,7 @@ dependencies:
   flutter_barcode_scanner: 2.0.0
   firebase_storage: ^11.1.0
   rxdart: ^0.27.2
+  page_indicator: ^0.4.0
   
 
   # The following adds the Cupertino Icons font to your application.
@@ -74,6 +75,21 @@ flutter:
     - assets/qr_code.jpg
     - assets/qr_code_2.jpg
     - assets/App logo.png
+    - assets/sport_venues_images/Outdoor Football Field 1.jpg
+    - assets/sport_venues_images/Outdoor Football Field 2.jpg
+    - assets/sport_venues_images/Outdoor Football Field 3.jpg
+    - assets/sport_venues_images/Indoor Football Field 1.jpg
+    - assets/sport_venues_images/Outdoor Basketball Field 1.jpg
+    - assets/sport_venues_images/Indoor Basketball Field 1.jpg
+    - assets/sport_venues_images/Indoor Basketball Field 2.jpg
+    - assets/sport_venues_images/Indoor Basketball Field 3.jpg
+    - assets/sport_venues_images/Indoor Volleyball Field 1.jpg
+    - assets/sport_venues_images/Indoor Volleyball Field 2.jpg
+    - assets/sport_venues_images/Indoor Volleyball Field 3.jpg
+    - assets/sport_venues_images/Outdoor Volleyball Field 1.jpg
+    - assets/sport_venues_images/Squash Tennis Fields 1.jpg
+    - assets/sport_venues_images/Squash Tennis Fields 2.jpg
+    - assets/sport_venues_images/Squash Tennis Fields 3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
