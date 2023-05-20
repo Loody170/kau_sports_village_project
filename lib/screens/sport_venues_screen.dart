@@ -86,7 +86,9 @@ class _SportVenuesScreenState extends State<SportVenuesScreen> {
                   capacity: venue.capacity,
                   imagesNames: venue.imagesNames,
                   number: venue.number,
-                  state: venue.state);
+                  state: venue.state,
+                  startingTime: venue.startingTime,
+                  endingTime: venue.endingTime,);
             }).toList()
               ,);
         }

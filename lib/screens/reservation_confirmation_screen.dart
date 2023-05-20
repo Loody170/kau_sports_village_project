@@ -99,9 +99,9 @@ class ReservationConfirmationScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    venue.imagesNames[0],
+                    'assets/sport_venues_images/${venue.imagesNames[0]}.jpg',
                     width: double.infinity,
-                    height: 200,
+                    height: 250,
                     fit: BoxFit.cover,
                   ),
                   Center(

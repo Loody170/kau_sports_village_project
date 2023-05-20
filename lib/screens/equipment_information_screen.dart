@@ -252,7 +252,7 @@ class EquipmentInformationScreen extends StatelessWidget {
          print(bmiClass);
         }
         return Container(
-          height: MediaQuery.of(context).size.height * 0.50,
+          height: MediaQuery.of(context).size.height * 0.60,
           padding: EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             child: Column(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:kau_sports_village_project/main_screen.dart';
+import 'package:kau_sports_village_project/models/period.dart';
 import 'package:kau_sports_village_project/models/sport_venue.dart';
 import 'package:kau_sports_village_project/screens/reservation_form_screen.dart';
 import 'package:kau_sports_village_project/screens/sign_in_screen.dart';
@@ -13,7 +14,7 @@ import '../app_data.dart';
 
 class VenueBookingScreen extends StatefulWidget {
   static final String routeName = '/venue-booking';
-  static late Widget buttons = Row();
+  // static late Widget buttons = Row();
   static String chosenTime = '';
 
   @override
@@ -22,6 +23,7 @@ class VenueBookingScreen extends StatefulWidget {
 
 class _VenueBookingScreenState extends State<VenueBookingScreen> {
   DateTime _dateTime = DateTime.now();
+  late List<Period> times;
 
   String formatDate(DateTime dt) {
     var format = DateFormat('yyyy-MM-dd');
@@ -31,22 +33,84 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
   @override
   void initState() {
     super.initState();
-    PeroidButtons.button1 = false;
-    PeroidButtons.button2 = false;
-    PeroidButtons.button3 = false;
+    List<Period> initialTimes = [];
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final routeArgs = ModalRoute.of(context)?.settings.arguments as Map<String, VenueItem>;
+      initialTimes = divideTimePeriod(
+          routeArgs['venueObject']!.startingTime,
+          routeArgs['venueObject']!.endingTime);
+      for (Period period in initialTimes) {
+        period.isClicked = false;
+      }
+
+      setState(() {
+        times = initialTimes;
+      });
+    });
   }
 
   void refreshScreen() {
     setState(() {});
   }
+  //
+  // bool isButtonPressed() {
+  //   return PeroidButtons.button1 ||
+  //       PeroidButtons.button2 ||
+  //       PeroidButtons.button3;
+  // }
 
-  bool isButtonPressed() {
-    return PeroidButtons.button1 ||
-        PeroidButtons.button2 ||
-        PeroidButtons.button3;
+  List<Period> divideTimePeriod(int startHour, int endHour) {
+    List<Period> slots = [];
+
+    // Convert the hours to a 24-hour format (0-23)
+    int start = startHour % 24;
+    int end = endHour % 24;
+
+    // Calculate the total number of hours between the start and end times
+    int totalHours = (end - start + 24) % 24;
+
+    // Divide the total number of hours by the duration of each slot
+    int numSlots = (totalHours / 2).floor();
+
+    // Calculate the start time and end time of each slot
+    int slotStartHour = start;
+    for (int i = 0; i < numSlots; i++) {
+      int slotEndHour = (slotStartHour + 2) % 24;
+      slots.add(new Period(timePeriod: '${_formatHour(slotStartHour)} to ${_formatHour(slotEndHour)}',));
+      slotStartHour = slotEndHour;
+    }
+    // Add the last slot, if needed
+    if (slotStartHour != end) {
+      slots.add(new Period(timePeriod: '${_formatHour(slotStartHour)} to ${_formatHour(end)}',));
+    }
+    return slots;
+  }
+// Helper function to format an hour as a 12-hour time string
+  String _formatHour(int hour) {
+    String period = 'PM';
+    // = hour < 12 ? 'AM' : 'PM';
+    hour = hour % 12;
+    if (hour == 0) hour = 12;
+    //return '$hour:00 $period';
+    return '$hour:00';
   }
 
-
+  bool onlyOneSelected(List<Period> list) {
+    // int countSelected = 0;
+    // for (Period period in list) {
+    //   if (period.isClicked) {
+    //     countSelected++;
+    //     if (countSelected > 1) {
+    //       return false;
+    //     }
+    //   }
+    // }
+    // return countSelected == 1;
+    return list.any((item){
+      print('checking for confirm >> ${item.isClicked}');
+      return (item.isClicked == true);
+    });
+  }
 
   Widget buildCard(DateTime dt, String chosenPeriod) {
     String date = formatDate(dt);
@@ -116,18 +180,21 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
       ],
     );
     return alert;
-
   }
 
   @override
   Widget build(BuildContext context) {
+    for (Period period in times) {
+      print('checking list');
+      print(period.isClicked);
+    }
     final routeArgs =
         ModalRoute.of(context)?.settings.arguments as Map<String, VenueItem>;
     String barTitle = routeArgs['venueObject']!.title;
-    print(PeroidButtons.button1);
-
-    print(PeroidButtons.button2);
-    print(PeroidButtons.button3);
+    // print(PeroidButtons.button1);
+    //
+    // print(PeroidButtons.button2);
+    // print(PeroidButtons.button3);
     return Scaffold(
         appBar: AppBar(
           title: Text(barTitle),
@@ -141,7 +208,7 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(25)),
                     child: Image.asset('assets/sport_venues_images/${
-                      routeArgs['venueObject']?.imagesNames[0] as String}.jpg',
+                        routeArgs['venueObject']?.imagesNames[0] as String}.jpg',
                       fit: BoxFit.cover,
                     )),
               ),
@@ -180,12 +247,13 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
                 refreshBookingScreen: this.refreshScreen,
                 selectedDate: _dateTime,
                 chosenVenue: routeArgs['venueObject'] as VenueItem,
+                slots: this.times,
               ),
 
               Container(
                   padding: EdgeInsets.only(top: 30),
                   child: ElevatedButton(
-                      onPressed: !isButtonPressed()
+                      onPressed: !onlyOneSelected(this.times)
                           ? null
                           : () async{
                               if(FirebaseAuth.instance.currentUser == null){
@@ -194,7 +262,6 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
                                     builder: (BuildContext context){
                                       return signInDialog(context);
                                     });
-
                               }
                               else {
                                 print(PeroidButtons.chosenPeroid);

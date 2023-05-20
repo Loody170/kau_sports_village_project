@@ -6,6 +6,8 @@ class SportVenue{
   final String availablePeroids;
   final String state;
   final List<dynamic> imagesNames;
+  final int startingTime;
+  final int endingTime;
 
   const SportVenue({
     required this.typeOfSport,
@@ -14,7 +16,9 @@ class SportVenue{
     required this.capacity,
     required this.availablePeroids,
     required this.state,
-    required this.imagesNames
+    required this.imagesNames,
+    required this.startingTime,
+    required this.endingTime
       });
 
   static SportVenue fromJson(Map<String, dynamic> map){
@@ -24,7 +28,9 @@ class SportVenue{
         capacity: map['venueCapacity'],
         availablePeroids: map['availablePeriods'],
         state: map['venueState'],
-        imagesNames: map['imagesNames']
+        imagesNames: map['imagesNames'],
+      startingTime: map['startingTime'],
+      endingTime: map['endingTime']
     );
   }
 }

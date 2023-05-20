@@ -51,7 +51,6 @@ class _TabsScreenState extends State<TabsScreen> {
         currentIndex: _selectedPageIndex,
 
         items: [
-
           BottomNavigationBarItem(backgroundColor:Theme.of(context).primaryColor,
               icon: Icon(Icons.sports_handball), label: 'Sports Categories'),
           BottomNavigationBarItem(backgroundColor: Theme.of(context).primaryColor,

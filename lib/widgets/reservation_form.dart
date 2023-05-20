@@ -14,19 +14,22 @@ class ReservationForm extends StatefulWidget {
 
   Map initMap(){
     Map map = {};
-    for (int i =0; i< venueCapacity; i++){
-      map['Player ${i+1}'] = '';
-      map['ID ${i+1}'] = '';
-    }
+    // for (int i =0; i< venueCapacity; i++){
+    //   map['Player ${i+1}'] = '';
+    //   map['ID ${i+1}'] = '';
+    // }
     return map;
   }
 
   void updateMap(List l, Map map,){
-    int index = 0;
-    map.keys.forEach((key) {
-      map.update(key, (value) => l[index]);
-      index++;
-    });
+    // int index = 0;
+    // map.keys.forEach((key) {
+    //   map.update(key, (value) => l[index]);
+    //   index++;
+    // });
+    for(int i = 0; i<l.length; i+= 2){
+      map[l[i]] = l[i+1];
+    }
   }
 
   List<Widget> makeFields(){

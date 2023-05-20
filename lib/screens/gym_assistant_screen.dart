@@ -75,8 +75,8 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
 
             ElevatedButton(onPressed: (){
               getResult =
-              // 'Precor Prone Leg Curl';
-              'Precor Prone Leg Cur';
+              'Precor Prone Leg Curl';
+              // 'Matrix Performance Climb Mill';
               EquipmentHistoryScreen.addEquipmentName(getResult);
 
               //getiinfo(getResult);
@@ -88,12 +88,13 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
           ElevatedButton(onPressed: (){
             GymEquipment equipment1 =
             GymEquipment(
-                name: 'Precor Prone Leg Curl',
-                description: 'A machine that targets the hamstrings. Users lie on their stomachs and curl their legs upward against resistance to build strength in the back of the thighs.',
+                name: 'Matrix Performance Climb Mill',
+                description: 'A machine that works with your body weight and activates the major muscle groups in your lower body — including your glutes, quadriceps, hamstrings, and calves.',
                 workoutTips: [
-                  'When using the machine, make sure to keep your upper body stable and avoid arching your back. Focus on contracting your hamstring muscles as you lift the weight towards your buttocks,',
-                  'Make sure to adjust the seat and leg pads to fit your body size. The leg pad should be placed just above your ankles, and the seat should be adjusted to ensure that your knees are in line with the pivot point of the machine.',
-                  'Breathe correctly: Remember to inhale as you lower the weight and exhale as you lift it up. This will help you maintain proper form and prevent any strain on your muscles.'
+                  'Maintain Your Posture: To put strain on the right parts of your body—the glutes and hamstrings instead of your back—slow down and get your posture right. "When youre hunched over, youre putting strain on your back and turning down your glutes" ',
+                 ' Dont Hold On:  If youre feeling off-balance, lightly grasping the sides will help you get steady. But dont rely on them to hold you up. That reduces the load of your body on the stairs and reduces the effectiveness of your StairMaster workout.',
+                'Switch It Up: Going forward targets your glutes and hamstrings, but if youre looking to work your quads, turn around and complete part of your StairMaster workout backward.',
+
                 ]);
 
             insertEquipment.addEquipment(equipment1);

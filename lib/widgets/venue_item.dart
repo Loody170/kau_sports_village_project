@@ -10,6 +10,8 @@ class VenueItem extends StatelessWidget {
   final String availablePeroids;
   final String state;
   final List<dynamic> imagesNames;
+  final int startingTime;
+  final int endingTime;
 
   VenueItem({
     required this.typeOfSport,
@@ -18,7 +20,9 @@ class VenueItem extends StatelessWidget {
     required this.capacity,
     required this.availablePeroids,
     required this.state,
-    required this.imagesNames
+    required this.imagesNames,
+    required this.startingTime,
+    required this.endingTime
   });
 
 
@@ -145,7 +149,7 @@ class VenueItem extends StatelessWidget {
                       SizedBox(
                         width: 6,
                       ),
-                      Text(availablePeroids),
+                      Text("$startingTime:00PM to $endingTime:00PM"),
                     ],
                   ),
                 ],
