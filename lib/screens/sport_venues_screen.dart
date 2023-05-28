@@ -46,29 +46,8 @@ class _SportVenuesScreenState extends State<SportVenuesScreen> {
     final routeArgs = ModalRoute.of(context)?.settings.arguments as Map<String, String>;
     final String type = routeArgs['type'] as String;
     final String title = routeArgs['title'] as String;
-
-    // List<VenueItem> displayedVenues = DUMMY_SPORTVENUES.where((venue){
-    //   return venue.typeOfSport.contains(type);
-    // }).toList();
-    // venuesList.forEach((element) {
-    //   print(element.typeOfSport);
-    // });
-
     return Scaffold(appBar: AppBar(title: Text(title + ' Venues'),),
         body:
-        //
-        // ListView(children:
-        // displayedVenues.map((venue){
-        //   return VenueItem(typeOfSport: venue.typeOfSport,
-        //       availablePeroids: venue.availablePeroids,
-        //       title: venue.title,
-        //       capacity: venue.capacity,
-        //       imageUrl: venue.imageUrl,
-        //       number: venue.number,
-        //       state: venue.state);
-        // }).toList()
-        //   ,) );
-
     StreamBuilder(
       stream: readVenues(type),
       builder: (context, snapshot){

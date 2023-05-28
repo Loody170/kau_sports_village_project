@@ -12,9 +12,6 @@ class PeroidButtons extends StatefulWidget {
   DateTime selectedDate;
   VenueItem chosenVenue;
   static String chosenPeroid = '';
-  // static bool button1 = false;
-  // static bool button2 = false;
-  // static bool button3 = false;
   List <Period> slots;
   Function refreshBookingScreen;
 
@@ -31,9 +28,6 @@ class PeroidButtons extends StatefulWidget {
 }
 
 class _PeroidButtonsState extends State<PeroidButtons> {
-  // bool get isReserved {
-  //   return checkIfReserved(widget.listofR, formatDate(widget.selectedDate), widget.chosenVenue, '4-6');
-  // }
   Stream<List<Reservation>>
   readPendingReservations() {
     return
@@ -110,8 +104,6 @@ class _PeroidButtonsState extends State<PeroidButtons> {
         period.isClicked = false;
       }
     }
-
-
   }
 
   @override
@@ -136,13 +128,6 @@ class _PeroidButtonsState extends State<PeroidButtons> {
                     // PeroidButtons.chosenPeroid = '4:00PM to 6:00PM';
                     setState(() {
                       turnOffAllButOne(this.widget.slots, slot);
-
-                      // print('prinitng bools');
-
-                      // print(this.widget.times[0].isClicked);
-                      // print(this.widget.times[1].isClicked);
-                      // print(this.widget.times[2].isClicked);
-
                       widget.refreshBookingScreen();
                       PeroidButtons.chosenPeroid = slot.timePeriod;
                       VenueBookingScreen.chosenTime = slot.timePeriod;
@@ -152,73 +137,6 @@ class _PeroidButtonsState extends State<PeroidButtons> {
                   child: Text(slot.timePeriod),
                   );
               }).toList()
-          // [
-          //   ElevatedButton(style: PeroidButtons.button1 ? ElevatedButton.styleFrom(
-          //       backgroundColor: Colors.deepOrangeAccent) : ElevatedButton.styleFrom(
-          //       backgroundColor: Colors.teal),
-          //       onPressed: checkIfReserved(reteivedReservations,
-          //           formatDate(widget.selectedDate), widget.chosenVenue,
-          //           '4:00PM to 6:00PM') ? null : () {
-          //        // PeroidButtons.chosenPeroid = '4:00PM to 6:00PM';
-          //         setState(() {
-          //           PeroidButtons.button1 = true;
-          //           PeroidButtons.button2 = false;
-          //           PeroidButtons.button3 = false;
-          //           print(PeroidButtons.button1);
-            //
-            //         print(PeroidButtons.button2);
-            //         print(PeroidButtons.button3);
-            //         widget.refreshBookingScreen();
-            //         PeroidButtons.chosenPeroid = '4:00PM to 6:00PM';
-            //         VenueBookingScreen.chosenTime = '4:00PM to 6:00PM';
-            //       });
-            //     }, child: Text('4:00PM -\n6:00PM')),
-            //
-            // ElevatedButton(style: PeroidButtons.button2 ? ElevatedButton.styleFrom(
-            //     backgroundColor: Colors.deepOrangeAccent) : ElevatedButton.styleFrom(
-            //     backgroundColor: Colors.teal),
-            //     onPressed:  checkIfReserved(reteivedReservations,
-            //         formatDate(widget.selectedDate), widget.chosenVenue,
-            //         '6:00PM to 8:00PM') ? null : () {
-            //       // PeroidButtons.chosenPeroid = '6:00PM to 8:00PM';
-            //       setState(() {
-            //         PeroidButtons.button1 = false;
-            //         PeroidButtons.button2 = true;
-            //         PeroidButtons.button3 = false;
-            //         print(PeroidButtons.button1);
-            //
-            //         print(PeroidButtons.button2);
-            //         print(PeroidButtons.button3);
-            //         widget.refreshBookingScreen();
-            //         PeroidButtons.chosenPeroid = '6:00PM to 8:00PM';
-            //         VenueBookingScreen.chosenTime = '6:00PM to 8:00PM';
-            //       });
-            //     },
-            //     child: Text('6:00PM -\n8:00PM')),
-            //
-            // ElevatedButton(style: PeroidButtons.button3 ? ElevatedButton.styleFrom(
-            //     backgroundColor: Colors.deepOrangeAccent) : ElevatedButton.styleFrom(
-            //     backgroundColor: Colors.teal),
-            //     onPressed: checkIfReserved(reteivedReservations,
-            //         formatDate(widget.selectedDate), widget.chosenVenue,
-            //         '8:00PM to 10:00PM') ? null : () {
-            //       // PeroidButtons.chosenPeroid = '8:00PM to 10:00PM';
-            //       setState(() {
-            //         PeroidButtons.button1 = false;
-            //         PeroidButtons.button2 = false;
-            //         PeroidButtons.button3 = true;
-            //         print(PeroidButtons.button1);
-            //
-            //         print(PeroidButtons.button2);
-            //         print(PeroidButtons.button3);
-            //         widget.refreshBookingScreen();
-            //         PeroidButtons.chosenPeroid = '8:00PM to 10:00PM';
-            //         VenueBookingScreen.chosenTime = '8:00PM to 10:00PM';
-            //
-            //       });
-            //     },
-            //     child: Text('8:00PM -\n10:00PM')),
-          // ]
             );
         }
         return Text('Loading...');
@@ -226,74 +144,3 @@ class _PeroidButtonsState extends State<PeroidButtons> {
     );
   }
 }
-
-
-//
-// return Row(
-// mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-// ElevatedButton(style: PeroidButtons.button1 ? ElevatedButton.styleFrom(
-// backgroundColor: Colors.deepOrangeAccent) : ElevatedButton.styleFrom(
-// backgroundColor: Colors.teal),
-// onPressed: checkIfReserved(reteivedReservations,
-// formatDate(widget.selectedDate), widget.chosenVenue,
-// '4:00PM to 6:00PM') ? null : () {
-// // PeroidButtons.chosenPeroid = '4:00PM to 6:00PM';
-// setState(() {
-// PeroidButtons.button1 = true;
-// PeroidButtons.button2 = false;
-// PeroidButtons.button3 = false;
-// print(PeroidButtons.button1);
-//
-// print(PeroidButtons.button2);
-// print(PeroidButtons.button3);
-// widget.refreshBookingScreen();
-// PeroidButtons.chosenPeroid = '4:00PM to 6:00PM';
-// VenueBookingScreen.chosenTime = '4:00PM to 6:00PM';
-// });
-// }, child: Text('4:00PM -\n6:00PM')),
-//
-// ElevatedButton(style: PeroidButtons.button2 ? ElevatedButton.styleFrom(
-// backgroundColor: Colors.deepOrangeAccent) : ElevatedButton.styleFrom(
-// backgroundColor: Colors.teal),
-// onPressed:  checkIfReserved(reteivedReservations,
-// formatDate(widget.selectedDate), widget.chosenVenue,
-// '6:00PM to 8:00PM') ? null : () {
-// // PeroidButtons.chosenPeroid = '6:00PM to 8:00PM';
-// setState(() {
-// PeroidButtons.button1 = false;
-// PeroidButtons.button2 = true;
-// PeroidButtons.button3 = false;
-// print(PeroidButtons.button1);
-//
-// print(PeroidButtons.button2);
-// print(PeroidButtons.button3);
-// widget.refreshBookingScreen();
-// PeroidButtons.chosenPeroid = '6:00PM to 8:00PM';
-// VenueBookingScreen.chosenTime = '6:00PM to 8:00PM';
-// });
-// },
-// child: Text('6:00PM -\n8:00PM')),
-//
-// ElevatedButton(style: PeroidButtons.button3 ? ElevatedButton.styleFrom(
-// backgroundColor: Colors.deepOrangeAccent) : ElevatedButton.styleFrom(
-// backgroundColor: Colors.teal),
-// onPressed: checkIfReserved(reteivedReservations,
-// formatDate(widget.selectedDate), widget.chosenVenue,
-// '8:00PM to 10:00PM') ? null : () {
-// // PeroidButtons.chosenPeroid = '8:00PM to 10:00PM';
-// setState(() {
-// PeroidButtons.button1 = false;
-// PeroidButtons.button2 = false;
-// PeroidButtons.button3 = true;
-// print(PeroidButtons.button1);
-//
-// print(PeroidButtons.button2);
-// print(PeroidButtons.button3);
-// widget.refreshBookingScreen();
-// PeroidButtons.chosenPeroid = '8:00PM to 10:00PM';
-// VenueBookingScreen.chosenTime = '8:00PM to 10:00PM';
-//
-// });
-// },
-// child: Text('8:00PM -\n10:00PM')),
-// ],);

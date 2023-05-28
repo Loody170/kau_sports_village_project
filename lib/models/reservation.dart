@@ -8,11 +8,9 @@ class Reservation{
   final String formattedDate;
   final String reservationStatus;
   final String reservationTime;
-  //final user booker
   final String reservedVenueName;
   final int reservedVenueNumber;
   final String reservedVenueType;
-  //final VenueItem reservedVenue;
   final Map listOfAttendants;
 
    Reservation({
@@ -22,8 +20,7 @@ class Reservation{
   required this.reservationTime,
      required this.reservedVenueName,
      required this.reservedVenueNumber,
-  //required this.reservedVenue,
-  required this.listOfAttendants,
+     required this.listOfAttendants,
      required this.reservedVenueType
    });
 
@@ -41,8 +38,7 @@ class Reservation{
   }
 
   static Map<String, dynamic> toJson(Reservation reservation, String uid, String venueType){
-    return
-        {
+    return{
           'number': reservation.reservationNumber,
           'status': reservation.reservationStatus,
           'date': reservation.formattedDate,

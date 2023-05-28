@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:kau_sports_village_project/app_data.dart';
 import 'package:kau_sports_village_project/models/reservation.dart';
 import 'package:kau_sports_village_project/widgets/reservations_item.dart';
 import 'package:rxdart/rxdart.dart';
@@ -113,7 +111,6 @@ class _UserReservationsScreenState extends State<UserReservationsScreen> {
       appBar: AppBar(title: Text('My Reservations'),),
       body: StreamBuilder(
         stream:
-        // readReservations()
           combineReservations()
           ,
         builder: (context, snapshot) {
@@ -124,24 +121,8 @@ class _UserReservationsScreenState extends State<UserReservationsScreen> {
                 child: Column(
                   children:
                   reteivedReservations.map((reservation) {
-                    // Future<String> pic = readVenueImage(reservation.reservedVenueType,
-                    //     reservation.reservedVenueName,
-                    //     reservation.reservedVenueNumber);
-                    // String picStr =  pic as String;
-
                     return
                       ReservationItem(
-                        // venueName: reservation.reservedVenueName,
-
-                        //testttt TODO
-                        // venueImage: readVenueImage(reservation.reservedVenueType,
-                        //     reservation.reservedVenueName,
-                        //     reservation.reservedVenueNumber),
-
-                        // reservedDate: reservation.formattedDate,
-                        // peroid: reservation.reservationTime,
-                        // reservationStatus: reservation.reservationStatus,
-                        // reservationNumber: reservation.reservationNumber,
                         setState: updateScreen,
                         reservation: reservation,);
                   }).toList(),

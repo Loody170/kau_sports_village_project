@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kau_sports_village_project/main_screen.dart';
 import 'package:kau_sports_village_project/models/app_user.dart';
-import 'package:kau_sports_village_project/screens/sign_in_screen.dart';
 import 'package:kau_sports_village_project/screens/tabs_screen.dart';
 import 'package:kau_sports_village_project/screens/user_reservations_screen.dart';
 

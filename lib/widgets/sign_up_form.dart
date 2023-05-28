@@ -245,7 +245,6 @@ class SignUpForm extends StatelessWidget {
           child: TextFormField(
             decoration: getInputDecoration('Confirm Password'),
             obscureText: true,
-            //onSaved: (value) => _password2 = value as String,
             controller: _secondPasswordController,
             validator: (value){
               if(_passwordController.text != _secondPasswordController.text){

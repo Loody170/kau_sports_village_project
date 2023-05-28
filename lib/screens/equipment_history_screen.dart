@@ -26,7 +26,6 @@ class EquipmentHistoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Scanned Equipment History'),),
       body: Column(children:
-        // _equipmentsNames.map((listItem) => EquipmentHistoryCard(equipmentName: listItem,) ).toList(),
       _equipmentsNames.map((listItem) {
         if(listItem.isNotEmpty){
           return EquipmentHistoryCard(equipmentName: listItem,);

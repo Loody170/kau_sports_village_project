@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kau_sports_village_project/models/gym_equipment.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:kau_sports_village_project/screens/user_profile_screen.dart';
-
 import '../models/app_user.dart';
 
 class EquipmentInformationScreen extends StatelessWidget {
@@ -52,18 +51,6 @@ class EquipmentInformationScreen extends StatelessWidget {
     print(equipment);
     return equipment;
 
-    // .then((value){
-    // if(value.exists){
-    //   Map<String, dynamic>? data = value.data();
-    //   GymEquipment equipment = GymEquipment.fromJson(data!, 'imageUrl1', 'imageUrl2');
-    //   print('isnide value and printing obj');
-    //   print(equipment);
-    //   return equipment;
-    // }
-    // else{
-    //   print('nooooo');
-    //}
-    //})
   }
 
   List<Widget> makeTips(GymEquipment equipment) {
@@ -97,8 +84,6 @@ class EquipmentInformationScreen extends StatelessWidget {
     }
     return myWidgets;
   }
-
-
 
   Widget userProfileDialog(BuildContext context) {
     Widget yesButton = TextButton(
@@ -175,40 +160,9 @@ class EquipmentInformationScreen extends StatelessWidget {
                 onSaved: (value) => guestWeight = value!,
               ),
               SizedBox(height: 16),
-
-              // ElevatedButton(
-              //   onPressed: () {
-              //     if (_formKey.currentState!.validate()) {
-              //       _formKey.currentState!.save();
-              //       // TODO: Use the height and weight values
-              //     }
-              //   },
-              //   child: Text('Submit'),
-              // ),
             ],
           ),
       ),
-
-
-      // content: Column(
-      //   mainAxisSize: MainAxisSize.min,
-      //   children: [
-      //     TextField(
-      //       keyboardType: TextInputType.number,
-      //       decoration: InputDecoration(
-      //         labelText: 'Enter Height',
-      //       ),
-      //     ),
-      //     SizedBox(height: 16),
-      //     TextField(
-      //       keyboardType: TextInputType.number,
-      //       decoration: InputDecoration(
-      //         labelText: 'Enter Weight',
-      //       ),
-      //     ),
-      //   ],
-      // ),
-
       actions: [
         TextButton(
           onPressed: () {
@@ -409,11 +363,7 @@ class EquipmentInformationScreen extends StatelessWidget {
                         },
                       ),
                       Column(
-                        children: makeTips(equipment)
-                        // equipment.workoutTips.map((e){
-                        //   return Text(equipment.workoutTips[]);
-                        // }).toList()
-                        ,
+                        children: makeTips(equipment),
                       ),
                       Container(
                         padding: const EdgeInsets.only(bottom: 25.0, top: 1),

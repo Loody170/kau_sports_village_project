@@ -99,21 +99,7 @@ class UserProfileForm extends StatelessWidget {
     if (weight.isNotEmpty) {
       data['Weight'] = weight;
     }
-
-    print(data);
-
     FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser?.uid).set(data, SetOptions(merge: true));
-    //     {
-    //   'First Name': firstName,
-    //   'Last Name': lastName,
-    //   'Role': role,
-    //   'Department': department,
-    //   'KAU ID': universityId,
-    //   'Phone Number': phoneNumber,
-    // }
-
-
-
   }
 
   @override
@@ -351,10 +337,7 @@ class UserProfileForm extends StatelessWidget {
         else{
           return Text('Loading...');
         }
-
       },
-
     );
-
   }
 }

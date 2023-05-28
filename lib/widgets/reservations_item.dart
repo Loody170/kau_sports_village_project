@@ -8,29 +8,13 @@ import '../models/reservation.dart';
 
 
 class ReservationItem extends StatelessWidget {
-  // late String venueName;
-  // //late Future<String> venueImage;
-  // late String reservedDate;
-  // late String peroid;
-  // late String reservationStatus;
-  // late int reservationNumber;
   late Reservation reservation;
   late Function setState;
 
-  ReservationItem(
-      {
-  //       required this.venueName,
-  //       //required this.venueImage,
-  //       required this.reservedDate,
-  //   required this.peroid, required this.reservationStatus,
-  // required this.reservationNumber,
+  ReservationItem({
         required this.reservation,
-        required this.setState});
-
-  //
-  // String formatDate(){
-  //   return format.format(reservedDate);
-  // }
+        required this.setState
+      });
 
   Future<void> deleteReservation(int rNumber) async {
     var snapshot = await FirebaseFirestore.instance.collection('reservations')
@@ -141,38 +125,13 @@ class ReservationItem extends StatelessWidget {
                           });
 
                     } : null, child: Text('Delete reservation'))
-
                   ],)
                 ],
               ),
             ),
-
-
-
           ],
         ),
       ),
     );
-
-
-
-
-
-
-
-    //   Container(decoration: BoxDecoration(shape: BoxShape.rectangle, borderRadius: BorderRadius.circular(15)
-    // ),
-    //   child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.black) ),
-    //     child: Row(children: [
-    //       ClipRRect(
-    //          borderRadius: BorderRadius.all(Radius.circular(15)
-    //            ),
-    //             child: Image.network(venueImage, height: 75, width: 75, fit: BoxFit.cover,))
-    //
-    //     ],),
-    //   ),
-    // );
-
-
   }
 }

@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kau_sports_village_project/screens/tabs_screen.dart';
@@ -16,8 +15,6 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-
-
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -46,18 +43,11 @@ class _SignInScreenState extends State<SignInScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Icon(Icons.android,
-                // size: 100,),
-                // SizedBox(height: 75,)
-              Image.asset('assets/App logo.png', scale: 0.8,)
-                ,
-                
+              Image.asset('assets/App logo.png', scale: 0.8,),
                 Text('Hello Again', style: GoogleFonts.publicSans(fontSize: 45),),
-
                 SizedBox(height: 10,),
                 Text('Welcome back!', style: GoogleFonts.publicSans(fontSize: 15),),
                 SizedBox(height: 25,),
-
                 Padding(padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextField(
                   controller: _emailController,
@@ -133,7 +123,6 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Text('Skip for now', style: TextStyle(fontWeight: FontWeight.bold,
                       color: Colors.blue),),
                 ),
-
               ],
             ),
           ),
