@@ -12,11 +12,6 @@ class MainScreen extends StatelessWidget {
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot){
-          // //for testing-------------
-          // if(snapshot.hasData)
-          //   FirebaseAuth.instance.signOut();
-          // //------------------------
-
           if(snapshot.hasData){
             print(snapshot.toString());
             return TabsScreen();

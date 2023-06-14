@@ -45,16 +45,13 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
                 ' and we will give you help and tips about it! ', style: GoogleFonts.kanit(fontSize: 20),
               textAlign: TextAlign.center,),
             SizedBox(height: 50,),
-
             ElevatedButton(
               onPressed: () {
                 scanQRCode();
-
               },
               child: Container(
                 width: 145,
                 child: Row(
-
                   children: [
                   Icon(Icons.camera_alt),
                   Text(' Turn on Camera')
@@ -104,6 +101,7 @@ class GymAssistantScreenState extends State<GymAssistantScreen> {
         return;
       }
       else if(! await checkDocumentExists(getResult)){
+        print(getResult);
         print('inavlid barcode');
         return;
       }

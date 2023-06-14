@@ -133,7 +133,9 @@ class ReservationConfirmationScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 8.0),
                         Container(
-                          height: 200,
+                          height: 180,
+                          decoration: BoxDecoration(border: Border.all(),
+                          borderRadius: BorderRadius.circular(20)),
                           width: double.infinity,
                           child: ListView.builder(
                             shrinkWrap: true,
@@ -147,7 +149,7 @@ class ReservationConfirmationScreen extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        key,
+                                       "    $key",
                                         style: TextStyle(
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold,
@@ -156,7 +158,7 @@ class ReservationConfirmationScreen extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        m[key].toString(),
+                                        "    ${m[key].toString()}",
                                         style: TextStyle(
                                           fontSize: 16.0,
                                         ),

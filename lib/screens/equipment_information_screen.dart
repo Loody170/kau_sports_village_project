@@ -35,10 +35,8 @@ class EquipmentInformationScreen extends StatelessWidget {
 
   Future<GymEquipment> readGymEquipment(String equipmentName) async {
     String pathSuffix = 'Workout';
-
     getImageUrl('$equipmentName/$equipmentName.jpg')
         .then((value) => imageUrl1 = value);
-
     final DocumentSnapshot ref = await FirebaseFirestore.instance
         .collection('gym_equipment_tips')
         .doc(equipmentName)
@@ -245,6 +243,7 @@ class EquipmentInformationScreen extends StatelessWidget {
 
   Stream<List<String>> getEquipmentWorkout(GymEquipment equipment, String chosenWorkOut){
     print('chosen work out for $chosenWorkOut');
+    print("for machine which is ${equipment.name}");
     return FirebaseFirestore.instance
         .collection('gym_equipment_workouts')
         .doc(equipment.name)
@@ -317,7 +316,11 @@ class EquipmentInformationScreen extends StatelessWidget {
                                   )),
                             );
                           } else
-                            return Text('loading...');
+                            return CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
+                            );
+
+                              // Text('loading...');
                         },
                       ),
                       Container(
@@ -359,7 +362,11 @@ class EquipmentInformationScreen extends StatelessWidget {
                                   )),
                             );
                           } else
-                            return Text('loading...');
+                            return CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
+                            );
+
+                              // Text('loading...');
                         },
                       ),
                       Column(
@@ -406,7 +413,11 @@ class EquipmentInformationScreen extends StatelessWidget {
                   ),
                 );
               }
-              return Text('loading...');
+              return CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              );
+
+                // Text('loading...');
             }));
   }
 }

@@ -32,7 +32,7 @@ class CategoryItem extends StatelessWidget {
       offset: Offset(30.0, -5.0),
       child: Transform.rotate(
       angle: 1.5, // rotate 180 degrees in radians
-      child: Image.network(
+      child: Image.asset(
       icon,
       fit: BoxFit.cover,
       )

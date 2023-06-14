@@ -90,6 +90,10 @@ flutter:
     - assets/sport_venues_images/Squash Tennis Fields 1.jpg
     - assets/sport_venues_images/Squash Tennis Fields 2.jpg
     - assets/sport_venues_images/Squash Tennis Fields 3.jpg
+    - assets/FBIcon.png
+    - assets/BBIcon.png
+    - assets/VBIcon.png
+    - assets/STIcon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

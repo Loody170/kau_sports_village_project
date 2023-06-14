@@ -20,3 +20,4 @@ class SportCategoriesScreen extends StatelessWidget {
     );
   }
 }
+

@@ -72,9 +72,12 @@ class _SportVenuesScreenState extends State<SportVenuesScreen> {
               ,);
         }
         print('no snapshot why?');
-        return Text('Loading...');
-      },)
+        return CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        );
+        // return Text('Loading...');
 
+      },)
     );
   }
 }

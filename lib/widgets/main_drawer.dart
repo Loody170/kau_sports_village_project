@@ -40,10 +40,8 @@ class MainDrawer extends StatelessWidget {
               Text('Welcome! \n ${user.fName} ${user.lName}', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 30, color: Theme.of(context).primaryColor),);
             }
             return Text('Welcome! \n Guest User', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 30, color: Theme.of(context).primaryColor),);
-
           },
         )
-
         ,),
       SizedBox(height: 20,),
       buildListTiles('Sports Categories', Icons.sports_handball, (){Navigator.of(context).pushReplacementNamed(TabsScreen.routeName);}),
@@ -51,12 +49,10 @@ class MainDrawer extends StatelessWidget {
         visible: !checkIfGuestUser(),
         child: buildListTiles('My Reservations', Icons.menu_book_outlined, (){Navigator.of(context).pushReplacementNamed(UserReservationsScreen.routeName);}),
       ),
-
       Visibility(
         visible: !checkIfGuestUser(),
         child: buildListTiles('My Profile', Icons.supervised_user_circle_sharp, (){Navigator.of(context).pushReplacementNamed(UserProfileScreen.routeName);}),
       ),
-
         !checkIfGuestUser()?
            buildListTiles('Sign out', Icons.exit_to_app, (){
             FirebaseAuth.instance.signOut();

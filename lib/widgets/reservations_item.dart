@@ -101,7 +101,11 @@ class ReservationItem extends StatelessWidget {
                           pics.data![0]}.jpg', height: 100, width: 90, fit: BoxFit.fitHeight,)
                     );
                   }
-                  return Text('Loading...');
+                  return CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
+                    );
+
+                    // Text('Loading...');
                 }
                 ),
 

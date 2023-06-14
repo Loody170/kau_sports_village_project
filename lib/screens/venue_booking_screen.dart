@@ -55,17 +55,13 @@ class _VenueBookingScreenState extends State<VenueBookingScreen> {
 
   List<Period> divideTimePeriod(int startHour, int endHour) {
     List<Period> slots = [];
-
     // Convert the hours to a 24-hour format (0-23)
     int start = startHour % 24;
     int end = endHour % 24;
-
     // Calculate the total number of hours between the start and end times
     int totalHours = (end - start + 24) % 24;
-
     // Divide the total number of hours by the duration of each slot
     int numSlots = (totalHours / 2).floor();
-
     // Calculate the start time and end time of each slot
     int slotStartHour = start;
     for (int i = 0; i < numSlots; i++) {

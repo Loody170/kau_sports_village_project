@@ -69,11 +69,11 @@ class UserProfileForm extends StatelessWidget {
     Map <String, dynamic> data = {};
 
     if (firstName.isNotEmpty) {
-      data['firstName'] = firstName;
+      data['First Name'] = firstName;
     }
 
     if (lastName.isNotEmpty) {
-      data['lastName'] = lastName;
+      data['Last Name'] = lastName;
     }
 
     if (role.isNotEmpty) {
