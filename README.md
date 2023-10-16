@@ -1,16 +1,4 @@
 # kau_sports_village_project
 
-This project is for CPIT-499 senior project.
+This project is for CPIT-499 senior project. The repositiry conatins the KAU Sports Village mobile app, which helps the beneficiers of the sports facility in the university to check and reserve sports venues online through the app and manage their reservations. It also helps the users in their excersices inside the gym by providing custom tips and workouts based on their health profile. The app is developed using the Flutter framework.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
